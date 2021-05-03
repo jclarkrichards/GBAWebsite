@@ -1,11 +1,13 @@
-/** {
+* {
     border: 1px solid blue;
     box-sizing: border-box;
+    margin: 0;
 }
-*/
+
 body {
-    background-image: url(../images/bg_test.png);
+    /*background-image: url(../images/bg_test.png);*/
     background-attachment: fixed;
+    background: #444;
 }
 
 h1 {
@@ -20,6 +22,7 @@ p.test1 {
     border: 2px solid blue;
     margin: 20px;
     background: #c2f670;
+    box-shadow: 6px 6px 5px #111;
 }
 
 p.test2 {
@@ -32,4 +35,87 @@ p.test2 {
     background: #c2f670;
     padding: 20px;
     border-radius: 2em;
+    box-shadow: 6px 6px 5px #111;
+}
+
+.headergroup {
+    position: fixed;
+    top: 0;
+    background: white;
+}
+
+.nav {
+    overflow: hidden;
+   
+}
+
+.maincontent {
+    margin-top: 100px;
+}
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    /*float: left;*/
+}
+
+ul.nav li {
+    float: left;
+}
+
+ul.nav li a {
+    display: block;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin: 5px;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: lightslategray;
+}
+
+
+
+.column {
+    padding: 10px;
+    float: left;
+    width: 50%;
+   
+}
+
+div.floatright {
+    clear: both;
+    float: right;
+    width: 50%;
+ 
+}
+
+.row:after {
+    clear: both;
+    display: table;
+    content: "";
+}
+
+.sideflex {
+    flex: 30%;
+    padding: 20px;
+}
+
+.mainflex {
+    flex: 70%;
+    padding: 20px;
+}
+
+.rowflex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content {
+    max-width: 960px;
+    margin: auto;
+    background: white;
 }
