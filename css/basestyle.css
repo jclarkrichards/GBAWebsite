@@ -1,7 +1,8 @@
-* {
+/** {
     border: 1px solid blue;
+    box-sizing: border-box;
 }
-
+*/
 body {
     background-image: url(../images/bg_test.png);
     background-attachment: fixed;
@@ -10,4 +11,25 @@ body {
 h1 {
     text-align: center;
     text-transform: uppercase;
+}
+
+p.test1 {
+    width: 500px;
+    height: 150px;
+    padding: 20px;
+    border: 2px solid blue;
+    margin: 20px;
+    background: #c2f670;
+}
+
+p.test2 {
+    /*-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;*/
+    box-sizing: border-box;
+    width: 500px;
+    height: 150px;
+    border: 10px ridge blue;
+    background: #c2f670;
+    padding: 20px;
+    border-radius: 2em;
 }
