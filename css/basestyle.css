@@ -1,0 +1,13 @@
+* {
+    border: 1px solid blue;
+}
+
+body {
+    background-image: url(../images/bg_test.png);
+    background-attachment: fixed;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
