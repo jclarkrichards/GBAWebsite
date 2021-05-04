@@ -131,6 +131,14 @@ div.floatright {
 .register {
     border-top: 5px double #5805ac;
     border-bottom: 5px double #5805ac;
+
+    flex: 28%;
+    padding: 20px;
+    background: #d2d792;
+    margin-right: 2%;
+    border-top: 10px solid #756f2e;
+    border-left: 2px solid #756f2e;
+    box-shadow: 6px 6px 5px #111;
 }
 
 
@@ -185,5 +193,15 @@ div.code {
 
 }
 
-    
+
+.bitblock {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+    .bitblock .explain {
+        flex: 70%;
+        padding: 20px;
+    }
 
