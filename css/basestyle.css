@@ -105,6 +105,7 @@ div.floatright {
 .rowflex {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .content {
@@ -126,3 +127,63 @@ div.floatright {
 .headergroup h1 {
     
 }
+
+.register {
+    border-top: 5px double #5805ac;
+    border-bottom: 5px double #5805ac;
+}
+
+
+
+    .register table {
+        margin: 10px auto;
+        background: #fff;
+        padding: 10px 10px;
+        box-shadow: 6px 6px 5px #111;
+        border-left: 10px solid #5805ac;
+        border-collapse: collapse;
+    }
+
+    .register table tr {
+        border: 1px solid black;
+    }
+
+    .register table tr td {
+        font-size: 2em;
+        padding: 2px;
+        color: black;
+        /*border: 1px dotted blue;*/
+    }
+
+    .register table tr th {
+        color: #5805ac;
+        /*border: 1px dotted blue;*/
+    }
+
+   
+
+ 
+        pre > code {
+            border: 1px solid black;
+            height: 400px;
+            display: block; 
+            overflow-y: scroll;
+            overflow-x: scroll;
+            
+            box-shadow: 6px 6px 5px #111;
+        }
+
+div.code {
+    margin: 10px auto;
+    background: #222;
+    padding-top: 20px;
+}
+
+.code p {
+    color: white;
+    font-size: 2em;
+
+}
+
+    
+
