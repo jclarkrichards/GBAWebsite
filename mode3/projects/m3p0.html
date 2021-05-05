@@ -22,9 +22,7 @@
 
           <div class="headergroup">
               <h1>Single Red Pixel</h1>
-
-
-
+              <div class="rightline"></div>
           </div>
 
 
@@ -33,7 +31,7 @@
               <div class="row">
                   <div class="column">
                       <p>In this tutorial we are going to start simple.  I mean really simple.  Take a look at the image on the right.  See that little red pixel?  That's what we're going to make, and I'll show you how to do it step-by-step.  Creating something as simple as a single pixel can be more difficult than you might think.</p>
-                      
+
                   </div>
                   <div class="column">
                       <figure>
@@ -46,12 +44,14 @@
 
               </div>
 
+              <hr />
+
 
               <div class="rowflex">
                   <div class="mainflex">
                       <h2>Setup</h2>
-                      
-                        <p>If you haven't already open up the Programmer's Notepad or whatever editor you're using and create a new empty project.  This will usually be the first task in all of our projects, so that's why I've created a page that explains how to create an empty project and get it ready for our code.  If you need help setting the project up, look at the sidebar on the right.</p>
+
+                      <p>If you haven't already open up the Programmer's Notepad or whatever editor you're using and create a new empty project.  This will usually be the first task in all of our projects, so that's why I've created a page that explains how to create an empty project and get it ready for our code.  If you need help setting the project up, look at the sidebar on the right.</p>
                   </div>
                   <div class="sideflex">
                       <p>Creating an empty project is the first step.  </p>
@@ -59,64 +59,9 @@
                   </div>
               </div>
 
-              
 
-              <div class="bitblock">
-                  <div class="explain">
-                      <p>This is the display register.  It's conveniently located in the first location in the Input / Output memory location.  It's 2 bytes (or 16 bits) wide.  There are various settings on here that we can set.  I'm not going to go over everything, just what we need to know for this project.  So, there's really only 2 things we need to set:  The mode we're using and which background to use.  </p>
-                  </div>
-                  <div class="register">
-                      <table>
-                          <tr>
-                              <th colspan="5" align="left">REG_DISP</th>
-                              <th colspan="9" align="center">0x0400:0000</th>
-                              <th colspan="5" align="right">0x0000</th>
-                          </tr>
-                          <tr class="values">
-                              <td>F</td>
-                              <td>E</td>
-                              <td>D</td>
-                              <td>C</td>
-                              <td>&nbsp;</td>
-                              <td>B</td>
-                              <td>A</td>
-                              <td>9</td>
-                              <td>8</td>
-                              <td>&nbsp;</td>
-                              <td>7</td>
-                              <td>6</td>
-                              <td>5</td>
-                              <td>4</td>
-                              <td>&nbsp;</td>
-                              <td>3</td>
-                              <td>2</td>
-                              <td>1</td>
-                              <td>0</td>
-                          </tr>
-                          <tr>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>&nbsp;</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>&nbsp;</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>&nbsp;</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                              <td>0</td>
-                          </tr>
-                      </table>
-                  </div>
-              </div>
+
+
 
               <hr />
 
@@ -161,11 +106,72 @@ return 0;
                       </code>
                       
                   </pre>
-                  
+
               </div>
 
 
+              <hr />
 
+              <h2 class="codeheader">*(volatile unsigned short*)0x04000000 = 0x0403;</h2>
+
+              <div class="bitblock">
+                  <div class="explain">
+                      <p>This is the display register.  It's conveniently located in the first location in the Input / Output memory location.  It's 2 bytes (or 16 bits) wide.  There are various settings on here that we can set.  I'm not going to go over everything, just what we need to know for this project.  So, there's really only 2 things we need to set:  The mode we're using and which background to use.  </p>
+                  </div>
+                  <div class="register">
+                      <table>
+                          <tr>
+                              <th colspan="5" align="left">REG_DISP</th>
+                              <th colspan="9" align="center">0x0400:0000</th>
+                              <th colspan="5" align="right">0x0403</th>
+                          </tr>
+                          <tr class="values">
+                              <td>F</td>
+                              <td>E</td>
+                              <td>D</td>
+                              <td>C</td>
+                              <td>&nbsp;</td>
+                              <td>B</td>
+                              <td>A</td>
+                              <td>9</td>
+                              <td>8</td>
+                              <td>&nbsp;</td>
+                              <td>7</td>
+                              <td>6</td>
+                              <td>5</td>
+                              <td>4</td>
+                              <td>&nbsp;</td>
+                              <td>3</td>
+                              <td>2</td>
+                              <td>1</td>
+                              <td>0</td>
+                          </tr>
+                          <tr>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>&nbsp;</td>
+                              <td>0</td>
+                              <td>1</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>&nbsp;</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>&nbsp;</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>1</td>
+                              <td>1</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+
+              <hr />
 
               <div>
                   <p class="test1">This is a sentence.</p>
