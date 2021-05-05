@@ -58,12 +58,17 @@ p.test2 {
     text-align: center;
     text-decoration: none;
     padding: 10px 10px;
-    margin: 5px;
+    margin: 2px;
     color: white;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    background-color: lightslategray;
+    /*border-top-left-radius: 15px;
+    border-top-right-radius: 15px;*/
+    background-color: #888;
 }
+
+    .nav a:hover {
+        color: black;
+        background-color: #605796;
+    }
 
 
 
@@ -90,10 +95,10 @@ div.floatright {
 .sideflex {
     flex: 28%;
     padding: 20px;
-    background: #d2d792;
+    background: #aca358;
     margin-right: 2%;
-    border-top: 10px solid #756f2e;
-    border-left: 2px solid #756f2e;
+    border-top: 10px solid #867b79;
+    border-left: 2px solid #867b79;
     box-shadow: 6px 6px 5px #111;
 }
 
@@ -107,6 +112,12 @@ div.floatright {
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
+
+    .rowflex:after {
+        clear: both;
+        display: table;
+        content: "";
+    }
 
 .content {
     max-width: 960px;
@@ -128,21 +139,31 @@ div.floatright {
     
 }
 
-.register {
-    border-top: 5px double #5805ac;
-    border-bottom: 5px double #5805ac;
 
-    flex: 28%;
-    padding: 20px;
-    background: #d2d792;
+.bitblock {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.register {
+    /*border-top: 5px double #5805ac;
+    border-bottom: 5px double #5805ac;*/
+    flex: 48%;
     margin-right: 2%;
-    border-top: 10px solid #756f2e;
-    border-left: 2px solid #756f2e;
-    box-shadow: 6px 6px 5px #111;
+    
 }
 
 
 
+    .explain {
+        flex: 46%;
+        background: #ccc;
+        padding: 10px 20px;
+        margin: 0 2%;
+    }
+
+    
     .register table {
         margin: 10px auto;
         background: #fff;
@@ -159,27 +180,30 @@ div.floatright {
     .register table tr td {
         font-size: 2em;
         padding: 2px;
-        color: black;
+        /*color: black;*/
         /*border: 1px dotted blue;*/
-    }
+    } 
 
     .register table tr th {
-        color: #5805ac;
+        /*color: #5805ac;*/
         /*border: 1px dotted blue;*/
     }
 
-   
+table .values {
+    color: #5805ac;
+    font-weight: bold;
+}
 
- 
-        pre > code {
-            border: 1px solid black;
-            height: 400px;
-            display: block; 
-            overflow-y: scroll;
-            overflow-x: scroll;
-            
-            box-shadow: 6px 6px 5px #111;
-        }
+pre > code {
+    border: 1px solid black;
+    border-left: 10px solid black;
+    height: 300px;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    padding-left: 20px;
+    box-shadow: 6px 6px 5px #111;
+}      
 
 div.code {
     margin: 10px auto;
@@ -193,15 +217,11 @@ div.code {
 
 }
 
-
-.bitblock {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+.paragraph {
+    margin: 20px;
 }
 
-    .bitblock .explain {
-        flex: 70%;
-        padding: 20px;
-    }
+.paragraph h3 {
+    text-align: center;
+}
 

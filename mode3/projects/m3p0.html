@@ -32,7 +32,7 @@
               <div class="row">
                   <div class="column">
                       <p>In this tutorial we are going to start simple.  I mean really simple.  Take a look at the image on the right.  See that little red pixel?  That's what we're going to make, and I'll show you how to do it step-by-step.  Creating something as simple as a single pixel can be more difficult than you might think.</p>
-                      <p>H<sub>2</sub>O</p>
+                      
                   </div>
                   <div class="column">
                       <figure>
@@ -48,16 +48,21 @@
 
               <div class="rowflex">
                   <div class="mainflex">
-                      <p>Hello, welcome to the first video in hopefully a series of videos where I show you how to program for the Gameboy Advance. In all of these videos I will be programming in C++, however, you can use C if you like if you’re more comfortable with that. Each video will show something short and simple, nothing too long and complicated. Please note, that I am not an expert in anything. I know how to do a few things and hopefully anything I show you will not only help you understand, but make you curious enough to seek out more information. In this video we’ll start really simple. I mean, really simple. We are just going to place a single pixel onto the Gameboy Advance screen. I know, exciting right? You’ll find, however, that something as simple as displaying a single pixel is really not that simple. But I’ll try to make it as simple as possible. The first thing we need to do is prepare our project. If you haven’t installed the necessary environment yet, then I would suggest that you go watch a previous video that I made where I show you how to do that and how to start a new project. The link to that video is in the description below. So go watch that video, then come back here. Assuming you did just that you should have the Programmer’s Notepad open as you see here with a source folder, an include folder, and the Makefile. What we’ll do now is create a new c++ file and save it into the source directory. There won’t be any include files in this project so that directory will remain empty.</p>
+                      <h2>Setup</h2>
+                      
+                        <p>If you haven't already open up the Programmer's Notepad or whatever editor you're using and create a new empty project.  This will usually be the first task in all of our projects, so that's why I've created a page that explains how to create an empty project and get it ready for our code.  If you need help setting the project up, look at the sidebar on the right.</p>
                   </div>
                   <div class="sideflex">
-                      <p>Side content goes here.</p>
+                      <p>Creating an empty project is the first step.  </p>
+                      <a href="#">Go here to learn how.</a>
                   </div>
               </div>
 
+              
+
               <div class="bitblock">
                   <div class="explain">
-                      <p>This code is blah blah blah and blah.</p>
+                      <p>This is the display register.  It's conveniently located in the first location in the Input / Output memory location.  It's 2 bytes (or 16 bits) wide.  There are various settings on here that we can set.  I'm not going to go over everything, just what we need to know for this project.  So, there's really only 2 things we need to set:  The mode we're using and which background to use.  </p>
                   </div>
                   <div class="register">
                       <table>
@@ -112,18 +117,27 @@
                   </div>
               </div>
 
+              <hr />
 
-                  <div class="code">
-                      <p>main.cpp</p>
-                      <!--<figcaption>main.cpp</figcaption>-->
-                      <pre>
-                      <code class="language-cpp">
+              <div class="paragraph">
+                  <h3>Create program</h3>
+                  <p>The first thing we're going to do is create a file called main.cpp and stick the code below into it.  There's really only 4 lines of code to worry about, but it probably all looks like gibberish to you.  Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you've programmed in C or C++ before.</p>
+                  <p>The while(1); line just means to loop forever.  You actually don't need it in this particular program for it to work.  I always just include it by default since it's basically the game loop.  When we start working on more complicated projects, then we'll put stuff in that loop, but for now it's empty.</p>
+                  <p>The return 0 line is standard in C and C++.   Notice that our main function has to return an integer when the program finishes.  If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.  If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred. </p>
+                  <p>Now for the first line.  This is definitely a mess.  Granted, you should never program this way unless you really like making life hard on yourself.  In the future we’ll make these lines a lot more readable for the programmer.  I’m going to start off by saying what this line does.  This line sets the display register.  Alright, maybe that wasn’t that informative.  Let me go into a little more detail below.</p>
+              </div>
+
+              <div class="code">
+                  <p>main.cpp</p>
+                  <!--<figcaption>main.cpp</figcaption>-->
+                  <pre>
+                  <code class="language-cpp">
 main()
 {
-*(volatile unsigned short*)0x04000000 = 0x0403;
-*(volatile unsigned short*)0x06000000 = 0x001F;
-while(1);
-return 0;
+    *(volatile unsigned short*)0x04000000 = 0x0403;
+    *(volatile unsigned short*)0x06000000 = 0x001F;
+    while(1);
+    return 0;
 }
 
 main()
@@ -146,66 +160,67 @@ return 0;
                       </code>
                       
                   </pre>
+                  
+              </div>
+
+
+
+
+              <div>
+                  <p class="test1">This is a sentence.</p>
+                  <p class="test2">This is a sentence. <a href="#">This is a link of sort.</a></p>
+              </div>
+
+              <div class="row">
+                  <div class="column">
+                      <p>
+                          Hello, welcome to the first video in hopefully a series of videos where I show you how to program for the Gameboy Advance.  In all of these videos I will be programming in C++, however, you can use C if you like if you’re more comfortable with that.  Each video will show something short and simple, nothing too long and complicated.  Please note, that I am not an expert in anything.  I know how to do a few things and hopefully anything I show you will not only help you understand, but make you curious enough to seek out more information.
+
+                          In this video we’ll start really simple.  I mean, really simple.  We are just going to place a single pixel onto the Gameboy Advance screen.  I know, exciting right?  You’ll find, however, that something as simple as displaying a single pixel is really not that simple.  But I’ll try to make it as simple as possible.
+
+                          The first thing we need to do is prepare our project.  If you haven’t installed the necessary environment yet, then I would suggest that you go watch a previous video that I made where I show you how to do that and how to start a new project.  The link to that video is in the description below.  So go watch that video, then come back here.  Assuming you did just that you should have the Programmer’s Notepad open as you see here with a source folder, an include folder, and the Makefile.  What we’ll do now is create a new c++ file and save it into the source directory.  There won’t be any include files in this project so that directory will remain empty.
+
+                          So go ahead and create a new file by clicking on the new file button here.  We are going to create our main function which is where the program always starts its execution.  In here we are going to type the following line:
+
+                          *(volatile unsigned short*)0x04000000 = 0x0403;
+                          *(unsigned short*)0x06000000 = 0x001F;
+
+                          while(1);
+                          return 0;
+
+                          There four lines may look like gibberish to you.  Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you’ve programmed in C or C++ before.  The while(1) line just means to loop forever.  We’re basically just creating an infinite loop there.  You really don’t need it for this program to work, you can remove it and everything works just fine.  I guess I always just include it by default, since that’s basically the game loop.  When we start working on more complicated programs, then we’ll put stuff in that loop, but for now it’s empty.
+
+                          The return 0 line is standard in C and C++.  Notice that our main function has to return an integer when the program finishes.  If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.  If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
+
+                          Now for the first line.  This is definitely a mess.  Granted, you should never program this way unless you really like making life hard on yourself.  In the future we’ll make these lines a lot more readable for the programmer.  I’m going to start off by saying what this line does.  This line sets the display register.  Alright, maybe that wasn’t that informative.  The gameboy advance has a bunch of registers that server different purposes.  We’ll eventually explore some of these registers, but the most important one is the display register.  For those who don’t know, a register is basically a small amount of memory that you can use to store some commands for the processor to use.  The display register tells the gameboy advance how to display things on the screen.  You do that by simply setting certain bits, or flags, in the display register.  The display register is located at memory address 0x0400:0000.  The gameboy advance memory is divided into various chunks of memory.  The memory that starts at 0x0400:0000 is known as Input/Output memory or IORAM.  This memory chunk is 1KB in size and is where most of the registers are located.  So anytime we need to read and/or write to a register, we’ll do so somewhere in this memory chunk.  It just so happens that the display register is the first register in this memory chunk, so that’s nice I guess.  The display register along with all of the other registers has a size of 2 bytes.  Each memory address in the gameboy advance is 1 byte as you would expect, so it’s important to know that each register takes up 2 memory addresses, so the second register would actually start at 0x0400:0002 and not at 0x0400:0001.  Anyways, the display register is 2 bytes, or 16 bits wide.  So we simply want to create a pointer to that memory location.  That’s what the astrix inside the parentheses means.  Because it’s 2 bytes wide we are going to set that pointer to be of type short.  Something of type short is also 2 bytes, so that’s good.  We say that it is unsigned because memory addresses can’t be negative.  We use the volatile keyword because you’ll get some strange behavior if you don’t.  Not in all cases, but in some cases.  It’s just good practice to use it on registers.  Now that we have a pointer, we want to assign a value to that location.  To do that we need to dereference the pointer first.  That’s where the other astrix at the start of the parentheses is for.  We can now assign 2 bytes of information to this memory location.  So we assign the value of 0x0403.  First off, you should notice that this is in fact 2 bytes of information.  But what does it all mean?  Lets write out each bit, there’s only 16 of them so it won’t take long.
+                      </p>
                   </div>
 
+                  <div class="column">
+                      <p>
+                          Hello, welcome to the first video in hopefully a series of videos where I show you how to program for the Gameboy Advance.  In all of these videos I will be programming in C++, however, you can use C if you like if you’re more comfortable with that.  Each video will show something short and simple, nothing too long and complicated.  Please note, that I am not an expert in anything.  I know how to do a few things and hopefully anything I show you will not only help you understand, but make you curious enough to seek out more information.
 
+                          In this video we’ll start really simple.  I mean, really simple.  We are just going to place a single pixel onto the Gameboy Advance screen.  I know, exciting right?  You’ll find, however, that something as simple as displaying a single pixel is really not that simple.  But I’ll try to make it as simple as possible.
 
+                          The first thing we need to do is prepare our project.  If you haven’t installed the necessary environment yet, then I would suggest that you go watch a previous video that I made where I show you how to do that and how to start a new project.  The link to that video is in the description below.  So go watch that video, then come back here.  Assuming you did just that you should have the Programmer’s Notepad open as you see here with a source folder, an include folder, and the Makefile.  What we’ll do now is create a new c++ file and save it into the source directory.  There won’t be any include files in this project so that directory will remain empty.
 
-                  <div>
-                      <p class="test1">This is a sentence.</p>
-                      <p class="test2">This is a sentence. <a href="#">This is a link of sort.</a></p>
-                  </div>
+                          So go ahead and create a new file by clicking on the new file button here.  We are going to create our main function which is where the program always starts its execution.  In here we are going to type the following line:
 
-                  <div class="row">
-                      <div class="column">
-                          <p>
-                              Hello, welcome to the first video in hopefully a series of videos where I show you how to program for the Gameboy Advance.  In all of these videos I will be programming in C++, however, you can use C if you like if you’re more comfortable with that.  Each video will show something short and simple, nothing too long and complicated.  Please note, that I am not an expert in anything.  I know how to do a few things and hopefully anything I show you will not only help you understand, but make you curious enough to seek out more information.
+                          *(volatile unsigned short*)0x04000000 = 0x0403;
+                          *(unsigned short*)0x06000000 = 0x001F;
 
-                              In this video we’ll start really simple.  I mean, really simple.  We are just going to place a single pixel onto the Gameboy Advance screen.  I know, exciting right?  You’ll find, however, that something as simple as displaying a single pixel is really not that simple.  But I’ll try to make it as simple as possible.
+                          while(1);
+                          return 0;
 
-                              The first thing we need to do is prepare our project.  If you haven’t installed the necessary environment yet, then I would suggest that you go watch a previous video that I made where I show you how to do that and how to start a new project.  The link to that video is in the description below.  So go watch that video, then come back here.  Assuming you did just that you should have the Programmer’s Notepad open as you see here with a source folder, an include folder, and the Makefile.  What we’ll do now is create a new c++ file and save it into the source directory.  There won’t be any include files in this project so that directory will remain empty.
+                          There four lines may look like gibberish to you.  Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you’ve programmed in C or C++ before.  The while(1) line just means to loop forever.  We’re basically just creating an infinite loop there.  You really don’t need it for this program to work, you can remove it and everything works just fine.  I guess I always just include it by default, since that’s basically the game loop.  When we start working on more complicated programs, then we’ll put stuff in that loop, but for now it’s empty.
 
-                              So go ahead and create a new file by clicking on the new file button here.  We are going to create our main function which is where the program always starts its execution.  In here we are going to type the following line:
+                          The return 0 line is standard in C and C++.  Notice that our main function has to return an integer when the program finishes.  If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.  If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
 
-                              *(volatile unsigned short*)0x04000000 = 0x0403;
-                              *(unsigned short*)0x06000000 = 0x001F;
-
-                              while(1);
-                              return 0;
-
-                              There four lines may look like gibberish to you.  Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you’ve programmed in C or C++ before.  The while(1) line just means to loop forever.  We’re basically just creating an infinite loop there.  You really don’t need it for this program to work, you can remove it and everything works just fine.  I guess I always just include it by default, since that’s basically the game loop.  When we start working on more complicated programs, then we’ll put stuff in that loop, but for now it’s empty.
-
-                              The return 0 line is standard in C and C++.  Notice that our main function has to return an integer when the program finishes.  If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.  If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
-
-                              Now for the first line.  This is definitely a mess.  Granted, you should never program this way unless you really like making life hard on yourself.  In the future we’ll make these lines a lot more readable for the programmer.  I’m going to start off by saying what this line does.  This line sets the display register.  Alright, maybe that wasn’t that informative.  The gameboy advance has a bunch of registers that server different purposes.  We’ll eventually explore some of these registers, but the most important one is the display register.  For those who don’t know, a register is basically a small amount of memory that you can use to store some commands for the processor to use.  The display register tells the gameboy advance how to display things on the screen.  You do that by simply setting certain bits, or flags, in the display register.  The display register is located at memory address 0x0400:0000.  The gameboy advance memory is divided into various chunks of memory.  The memory that starts at 0x0400:0000 is known as Input/Output memory or IORAM.  This memory chunk is 1KB in size and is where most of the registers are located.  So anytime we need to read and/or write to a register, we’ll do so somewhere in this memory chunk.  It just so happens that the display register is the first register in this memory chunk, so that’s nice I guess.  The display register along with all of the other registers has a size of 2 bytes.  Each memory address in the gameboy advance is 1 byte as you would expect, so it’s important to know that each register takes up 2 memory addresses, so the second register would actually start at 0x0400:0002 and not at 0x0400:0001.  Anyways, the display register is 2 bytes, or 16 bits wide.  So we simply want to create a pointer to that memory location.  That’s what the astrix inside the parentheses means.  Because it’s 2 bytes wide we are going to set that pointer to be of type short.  Something of type short is also 2 bytes, so that’s good.  We say that it is unsigned because memory addresses can’t be negative.  We use the volatile keyword because you’ll get some strange behavior if you don’t.  Not in all cases, but in some cases.  It’s just good practice to use it on registers.  Now that we have a pointer, we want to assign a value to that location.  To do that we need to dereference the pointer first.  That’s where the other astrix at the start of the parentheses is for.  We can now assign 2 bytes of information to this memory location.  So we assign the value of 0x0403.  First off, you should notice that this is in fact 2 bytes of information.  But what does it all mean?  Lets write out each bit, there’s only 16 of them so it won’t take long.
-                          </p>
-                      </div>
-
-                      <div class="column">
-                          <p>
-                              Hello, welcome to the first video in hopefully a series of videos where I show you how to program for the Gameboy Advance.  In all of these videos I will be programming in C++, however, you can use C if you like if you’re more comfortable with that.  Each video will show something short and simple, nothing too long and complicated.  Please note, that I am not an expert in anything.  I know how to do a few things and hopefully anything I show you will not only help you understand, but make you curious enough to seek out more information.
-
-                              In this video we’ll start really simple.  I mean, really simple.  We are just going to place a single pixel onto the Gameboy Advance screen.  I know, exciting right?  You’ll find, however, that something as simple as displaying a single pixel is really not that simple.  But I’ll try to make it as simple as possible.
-
-                              The first thing we need to do is prepare our project.  If you haven’t installed the necessary environment yet, then I would suggest that you go watch a previous video that I made where I show you how to do that and how to start a new project.  The link to that video is in the description below.  So go watch that video, then come back here.  Assuming you did just that you should have the Programmer’s Notepad open as you see here with a source folder, an include folder, and the Makefile.  What we’ll do now is create a new c++ file and save it into the source directory.  There won’t be any include files in this project so that directory will remain empty.
-
-                              So go ahead and create a new file by clicking on the new file button here.  We are going to create our main function which is where the program always starts its execution.  In here we are going to type the following line:
-
-                              *(volatile unsigned short*)0x04000000 = 0x0403;
-                              *(unsigned short*)0x06000000 = 0x001F;
-
-                              while(1);
-                              return 0;
-
-                              There four lines may look like gibberish to you.  Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you’ve programmed in C or C++ before.  The while(1) line just means to loop forever.  We’re basically just creating an infinite loop there.  You really don’t need it for this program to work, you can remove it and everything works just fine.  I guess I always just include it by default, since that’s basically the game loop.  When we start working on more complicated programs, then we’ll put stuff in that loop, but for now it’s empty.
-
-                              The return 0 line is standard in C and C++.  Notice that our main function has to return an integer when the program finishes.  If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.  If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
-
-                              Now for the first line.  This is definitely a mess.  Granted, you should never program this way unless you really like making life hard on yourself.  In the future we’ll make these lines a lot more readable for the programmer.  I’m going to start off by saying what this line does.  This line sets the display register.  Alright, maybe that wasn’t that informative.  The gameboy advance has a bunch of registers that server different purposes.  We’ll eventually explore some of these registers, but the most important one is the display register.  For those who don’t know, a register is basically a small amount of memory that you can use to store some commands for the processor to use.  The display register tells the gameboy advance how to display things on the screen.  You do that by simply setting certain bits, or flags, in the display register.  The display register is located at memory address 0x0400:0000.  The gameboy advance memory is divided into various chunks of memory.  The memory that starts at 0x0400:0000 is known as Input/Output memory or IORAM.  This memory chunk is 1KB in size and is where most of the registers are located.  So anytime we need to read and/or write to a register, we’ll do so somewhere in this memory chunk.  It just so happens that the display register is the first register in this memory chunk, so that’s nice I guess.  The display register along with all of the other registers has a size of 2 bytes.  Each memory address in the gameboy advance is 1 byte as you would expect, so it’s important to know that each register takes up 2 memory addresses, so the second register would actually start at 0x0400:0002 and not at 0x0400:0001.  Anyways, the display register is 2 bytes, or 16 bits wide.  So we simply want to create a pointer to that memory location.  That’s what the astrix inside the parentheses means.  Because it’s 2 bytes wide we are going to set that pointer to be of type short.  Something of type short is also 2 bytes, so that’s good.  We say that it is unsigned because memory addresses can’t be negative.  We use the volatile keyword because you’ll get some strange behavior if you don’t.  Not in all cases, but in some cases.  It’s just good practice to use it on registers.  Now that we have a pointer, we want to assign a value to that location.  To do that we need to dereference the pointer first.  That’s where the other astrix at the start of the parentheses is for.  We can now assign 2 bytes of information to this memory location.  So we assign the value of 0x0403.  First off, you should notice that this is in fact 2 bytes of information.  But what does it all mean?  Lets write out each bit, there’s only 16 of them so it won’t take long.
-                          </p>
-                      </div>
+                          Now for the first line.  This is definitely a mess.  Granted, you should never program this way unless you really like making life hard on yourself.  In the future we’ll make these lines a lot more readable for the programmer.  I’m going to start off by saying what this line does.  This line sets the display register.  Alright, maybe that wasn’t that informative.  The gameboy advance has a bunch of registers that server different purposes.  We’ll eventually explore some of these registers, but the most important one is the display register.  For those who don’t know, a register is basically a small amount of memory that you can use to store some commands for the processor to use.  The display register tells the gameboy advance how to display things on the screen.  You do that by simply setting certain bits, or flags, in the display register.  The display register is located at memory address 0x0400:0000.  The gameboy advance memory is divided into various chunks of memory.  The memory that starts at 0x0400:0000 is known as Input/Output memory or IORAM.  This memory chunk is 1KB in size and is where most of the registers are located.  So anytime we need to read and/or write to a register, we’ll do so somewhere in this memory chunk.  It just so happens that the display register is the first register in this memory chunk, so that’s nice I guess.  The display register along with all of the other registers has a size of 2 bytes.  Each memory address in the gameboy advance is 1 byte as you would expect, so it’s important to know that each register takes up 2 memory addresses, so the second register would actually start at 0x0400:0002 and not at 0x0400:0001.  Anyways, the display register is 2 bytes, or 16 bits wide.  So we simply want to create a pointer to that memory location.  That’s what the astrix inside the parentheses means.  Because it’s 2 bytes wide we are going to set that pointer to be of type short.  Something of type short is also 2 bytes, so that’s good.  We say that it is unsigned because memory addresses can’t be negative.  We use the volatile keyword because you’ll get some strange behavior if you don’t.  Not in all cases, but in some cases.  It’s just good practice to use it on registers.  Now that we have a pointer, we want to assign a value to that location.  To do that we need to dereference the pointer first.  That’s where the other astrix at the start of the parentheses is for.  We can now assign 2 bytes of information to this memory location.  So we assign the value of 0x0403.  First off, you should notice that this is in fact 2 bytes of information.  But what does it all mean?  Lets write out each bit, there’s only 16 of them so it won’t take long.
+                      </p>
                   </div>
               </div>
+          </div>
           </div><!--content-->
       <script src="../../js/prism.js"></script>
   </body>
