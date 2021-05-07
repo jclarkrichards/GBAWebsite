@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'LemonMilkBold'; /*a name to be used later*/
+    src: url('../fonts/LemonMilkBoldItalic.otf'); /*URL to font*/
+}
+
+* {
+    /*border: 1px solid blue;*/
+    box-sizing: border-box;
+    margin: 0;
+   
+}
+
+body {
+    background-image: url(../images/bg_test.png);
+    background-attachment: fixed;
+   
+}
+
+h1 {
+    text-align: left;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.content {
+    max-width: 960px;
+    margin: auto;
+    background: white;
+    box-shadow: 6px 6px 5px #111;
+}
+
+
+.maincontent {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.nav {
+    position: fixed;
+    overflow: hidden;
+    background-color: #222;
+    top: 0;
+    width: 960px;
+    
+}
+
+.nav a {
+    float: left;
+    display: block;
+    width: 120px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin: 2px 0;
+    color: white;
+    /*border-top-left-radius: 15px;
+    border-top-right-radius: 15px;*/
+    background-color: #888;
+}
+
+    .nav a:hover {
+        color: black;
+        background-color: #605796;
+    }
+
+
+
+
+
+
+.headergroup {
+    display: inline-block;
+    background-image: url(../images/dot_background.png);
+    /*background: #222;*/
+    width: 960px;
+    height: 200px;
+    color: red;
+    padding-top: 100px;
+}
+
+.headergroup img {
+    /*border: 1px solid red;*/
+    float: right;
+}
+
+    .headergroup h1 {
+        float: left;
+        /*border: 1px solid red;*/
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: left;
+        font-size: 4em;
+        font-family: 'LemonMilkBold', Arial, Arial, Helvetica, sans-serif;
+        /*border-bottom: 10px solid red;*/
+    }
+
+    .rightline {
+        margin-top: 30px;
+        float: left;
+        
+        width: 20%;
+        height: 30px;
+        /*background: red;*/
+        border-top: 5px solid red;
+        border-bottom: 5px solid red;
+    }
+
+
+
+
+.imageflex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imageflex img{
+    
+    flex: 40%;
+    padding: 10px;
+    align-self: flex-start;
+}
+
+.middle {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    padding: 10px;
+    flex: 25%;
+    margin-right: 10px;
+    
+}
+
+.sideInfo {
+    flex: 15%;
+    padding: 10px;
+    background: #888;
+    margin-right: 10px;
+}
+
+.topintro {
+    padding: 10px;
+}
+
+.conclusion {
+    padding: 10px;
+    background: #605796;
+    border: 1px solid red;
+    margin: 20px;
+    
+}
+
+
+
+
