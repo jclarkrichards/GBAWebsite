@@ -16,14 +16,32 @@ body {
    
 }
 
+.title {
+    float: left;
+    /*border: 1px solid red;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    font-size: 4em;
+    font-family: 'LemonMilkBold', Arial, Arial, Helvetica, sans-serif;
+    /*font-style: italic;*/
+    border-bottom: 10px solid red;
+    margin-left: 20px;
+    
+}
+
 h1 {
     text-align: left;
     text-transform: uppercase;
     padding: 10px;
+   
+    border-bottom: 5px solid black;
+    margin: 0 20px 10px 10px;
+
 }
 
 .content {
-    max-width: 960px;
+    max-width: 1366px; /*960px;*/
     margin: auto;
     background: white;
     box-shadow: 6px 6px 5px #111;
@@ -41,8 +59,7 @@ h1 {
     overflow: hidden;
     background-color: #222;
     top: 0;
-    width: 960px;
-    
+    width: 1366px; /*960px;*/
 }
 
 .nav a {
@@ -73,7 +90,7 @@ h1 {
     display: inline-block;
     background-image: url(../images/dot_background.png);
     /*background: #222;*/
-    width: 960px;
+    width: 1366px; /*960px;*/
     height: 200px;
     color: red;
     padding-top: 100px;
@@ -116,25 +133,39 @@ h1 {
 
 .imageflex img{
     
-    flex: 40%;
+    flex: 30%;
     padding: 10px;
     align-self: flex-start;
-}
-
-.middle {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    padding: 10px;
-    flex: 25%;
-    margin-right: 10px;
+   
+    
     
 }
 
-.sideInfo {
-    flex: 15%;
+.middle {
+    background-image: url(../common/images/checker_background.png);
+    /*
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-position-x: center;
+    border-left: 4px solid black;
+    border-right: 4px solid black;*/
+    border: 4px solid black;
     padding: 10px;
-    background: #888;
+    flex: 40%;
     margin-right: 10px;
+    /*border-radius: 1em;*/
+}
+
+.sideInfo {
+    background: #ebeaea;
+    background-image: url(../common/images/top_header_mac.png);
+    background-repeat: repeat-x;
+    
+    flex: 15%;
+    padding: 8px 10px 10px 10px;
+    margin-right: 20px;
+    box-shadow: 6px 6px #111;
+    border: 1px solid black;
 }
 
 .topintro {
@@ -143,11 +174,83 @@ h1 {
 
 .conclusion {
     padding: 10px;
-    background: #605796;
-    border: 1px solid red;
+    background: #b2aeae;
     margin: 20px;
+    padding-bottom: 80px;
+    background-image: url(../common/images/GBA_title_icon.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+}
+
+.sideheading {
+    color: black;
+    text-align: center;
+    font-weight: bold;
     
 }
+
+.sideInfo a {
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid black;
+    margin: 0 35%;
+    padding: 10px 30px;
+    box-shadow: 3px 3px #111;
+    border-radius: 5px;
+    background: white;
+    
+}
+
+.sideInfo a:hover {
+    color: white;
+    background: black;
+}
+
+.imgGroup {
+    border: 1px solid red;
+    flex: 60%;
+    padding: 10px;
+    align-self: flex-start;
+    margin-right: 20px;
+}
+
+.imgGroup h1 {
+    border: 1px solid red;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+    .imgGroup img {
+        border: 1px solid red;
+        padding-left: 20px;
+        margin-left: 10px;
+    }
+
+    .imgGroup p {
+        border: 1px solid red;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .headerNumber {
+        background: #605796;
+        color: white;
+        border: 1px solid red;
+        margin: 10px;
+        padding: 10px;
+        padding-left: 15px;
+    }
+
+
+
+.sectionSpace {
+    margin: 100px 0;
+}
+
+
 
 
 
