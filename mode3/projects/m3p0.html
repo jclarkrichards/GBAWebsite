@@ -22,8 +22,9 @@
 
           <div class="headergroup">
               <img src="images/GBA128.png" alt="gba" />
-              <h1>Single Red Pixel</h1>
-              <div class="rightline"></div>
+             
+              <div class="title">Single Red Pixel</div>
+
           </div>
 
 
@@ -62,9 +63,21 @@
                           If you need help setting the project up, look at the sidebar on the right.
                       </p>
                   </div>
-                  <div class="sideflex">
-                      <p>Creating an empty project is the first step.  </p>
-                      <a href="../../common/skeleton.html">Go here to learn how.</a>
+                  <!--
+        <div class="sideflex">
+            <p>Creating an empty project is the first step.  </p>
+            <a href="../../common/skeleton.html">Go here to learn how.</a>
+        </div>-->
+
+                  <div class="sideInfo">
+                      <p class="sideheading">TIP</p>
+                      <br />
+                      <p>
+                          Creating an empty project is the first step.
+                      </p>
+                      <br /><br />
+                      <a href="../../common/skeleton.html">Go</a>
+                      <br /><br />
                   </div>
               </div>
 
@@ -76,23 +89,20 @@
 
               <div class="rowflex">
 
-                  <div class="mainflex">
+                  <div class="mainflexCode">
                       <h2>Create program</h2>
                       <p>The first thing we're going to do is create a file called main.cpp and stick the code below into it.  There's really only 4 lines of code to worry about, but it probably all looks like gibberish to you.  Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you've programmed in C or C++ before.</p>
                       <p>The while(1); line just means to loop forever.  You actually don't need it in this particular program for it to work.  I always just include it by default since it's basically the game loop.  When we start working on more complicated projects, then we'll put stuff in that loop, but for now it's empty.</p>
                       <p>The return 0 line is standard in C and C++.   Notice that our main function has to return an integer when the program finishes.  If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.  If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred. </p>
                       <p>Now for the first line, which I'll explain below.</p>
                   </div>
-                  <div class="sideflex">
-                      <p>Enter some sideline information.</p>
-                  </div>
-              </div>
 
-              <div class="code">
-                  <p>main.cpp</p>
-                  <!--<figcaption>main.cpp</figcaption>-->
-                  <pre>
-                  <code class="language-cpp">
+                  <div class="sideInfoCode">
+                      <div class="code">
+                          <p>main.cpp</p>
+                          <!--<figcaption>main.cpp</figcaption>-->
+                          <pre>
+                          <code class="language-cpp">
 main()
 {
     *(volatile unsigned short*)0x04000000 = 0x0403;
@@ -104,7 +114,41 @@ main()
                       
                   </pre>
 
+                      </div>
+                  </div>
+                  <!--
+        <div class="sideInfo">
+            <p class="sideheading">TIP</p>
+            <br />
+            <p>
+                Go directly to github and download the latest Windows installer by clicking on the button below.
+            </p>
+            <br /><br />
+            <a href="https://github.com/devkitPro/installer/releases" target="_blank">Go</a>
+        </div>
+
+        <div class="sideflex">
+            <p>Enter some sideline information.</p>
+        </div>-->
               </div>
+              <!--
+                  <div class="code">
+                      <p>main.cpp</p>
+
+                      <pre>
+                      <code class="language-cpp">
+    main()
+    {
+        *(volatile unsigned short*)0x04000000 = 0x0403;
+        *(volatile unsigned short*)0x06000000 = 0x001F;
+        while(1);
+        return 0;
+    }
+                          </code>
+
+                      </pre>
+
+                  </div>-->
 
 
               <hr />
@@ -126,13 +170,88 @@ main()
                       </p>
                       <p>You'll notice that I have 3 bits set.  </p>
                   </div>
-                  <div class="sideflex">
-                      <p>Creating an empty project is the first step.  </p>
-                      <a href="#">Go here to learn how.</a>
+
+                  <div class="sideInfo">
+                      <p class="sideheading">TIP</p>
+                      <br />
+                      <p>
+                          To learn more about this register click the following button.
+                      </p>
+                      <br /><br />
+                      <a href="#">Go</a>
+                      <br /><br />
                   </div>
+                  <!--
+        <div class="sideflex">
+            <p>Creating an empty project is the first step.  </p>
+            <a href="#">Go here to learn how.</a>
+        </div>-->
               </div>
 
 
+              <div class="rowflex">
+                  <div class="mainflexRegister">
+                      <p>
+                          All of the bits that need to be set in this register is shown to the right along with its hex value.  You use the hex value in your program.
+                          You should notice that 3 bits are set.  
+                      </p>
+                  </div>
+                  <div class="sideInfoRegister">
+                      <table>
+                          <tr>
+                              <th colspan="5" align="left">REG_DISP</th>
+                              <th colspan="9" align="center">0x0400:0000</th>
+                              <th colspan="5" align="right">0x0403</th>
+                          </tr>
+                          <tr class="values">
+                              <td>F</td>
+                              <td>E</td>
+                              <td>D</td>
+                              <td>C</td>
+                              <td>&nbsp;</td>
+                              <td>B</td>
+                              <td>A</td>
+                              <td>9</td>
+                              <td>8</td>
+                              <td>&nbsp;</td>
+                              <td>7</td>
+                              <td>6</td>
+                              <td>5</td>
+                              <td>4</td>
+                              <td>&nbsp;</td>
+                              <td>3</td>
+                              <td>2</td>
+                              <td>1</td>
+                              <td>0</td>
+                          </tr>
+                          <tr>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>&nbsp;</td>
+                              <td>0</td>
+                              <td>1</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>&nbsp;</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>&nbsp;</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>1</td>
+                              <td>1</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+
+              <hr />
+
+              <!--
               <div class="bitblock">
                   <div class="explain">
                       <p>
@@ -199,7 +318,7 @@ main()
                       </table>
                   </div>
               </div>
-
+                  -->
               <hr />
 
 
@@ -221,18 +340,31 @@ main()
                       </p>
                       <p>You'll notice that I have 3 bits set.  </p>
                   </div>
-                  <div class="sideflex">
-                      <p>Click here to learn more about VRAM</p>
-                      <a href="#">Go here to learn how.</a>
 
-                      <p>Click here to learn more about the colors in the GameBoy Advance.</p>
-                      <a href="#">Go here to learn how.</a>
+                  <div class="sideInfo">
+                      <p class="sideheading">TIP</p>
+                      <br />
+                      <p>
+                          Click here to learn more about the colors in the GameBoy Advance.
+                      </p>
+                      <br /><br />
+                      <a href="../../common/colors.html">Go</a>
+                      <br /><br />
                   </div>
+
+                  <!--
+        <div class="sideflex">
+            <p>Click here to learn more about VRAM</p>
+            <a href="#">Go here to learn how.</a>
+
+            <p>Click here to learn more about the colors in the GameBoy Advance.</p>
+            <a href="#">Go here to learn how.</a>
+        </div>-->
               </div>
 
 
-              <div class="bitblock">
-                  <div class="explain">
+              <div class="rowflex">
+                  <div class="mainflexRegister">
                       <p>
                           The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
                           In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
@@ -245,7 +377,7 @@ main()
                       </p>
                       <p>You'll notice that I have 3 bits set.  </p>
                   </div>
-                  <div class="register">
+                  <div class="sideInfoRegister">
                       <table>
                           <tr>
                               <th colspan="5" align="left">VRAM</th>

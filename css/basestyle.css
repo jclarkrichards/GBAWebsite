@@ -20,6 +20,19 @@ h1 {
     text-transform: uppercase;
 }
 
+.title {
+    float: left;
+    /*border: 1px solid red;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    font-size: 4em;
+    font-family: 'LemonMilkBold', Arial, Arial, Helvetica, sans-serif;
+    /*font-style: italic;*/
+    border-bottom: 10px solid red;
+    margin-left: 20px;
+}
+
 p.test1 {
     width: 500px;
     height: 150px;
@@ -54,8 +67,7 @@ p.test2 {
     overflow: hidden;
     background-color: #222;
     top: 0;
-    width: 960px;
-    
+    width: 1366px;
 }
 
 .nav a {
@@ -127,7 +139,7 @@ div.floatright {
     }
 
 .content {
-    max-width: 960px;
+    max-width: 1366px;
     margin: auto;
     background: white;
     box-shadow: 6px 6px 5px #111;
@@ -139,7 +151,7 @@ div.floatright {
     display: inline-block;
     background-image: url(../images/dot_background.png);
     /*background: #222;*/
-    width: 960px;
+    width: 1366px;
     height: 200px;
     color: red;
     padding-top: 100px;
@@ -226,6 +238,12 @@ div.floatright {
         /*border: 1px dotted blue;*/
     }
 
+.sideheading {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+
 table .values {
     color: #5805ac;
     font-weight: bold;
@@ -245,7 +263,7 @@ pre > code {
 div.code {
     margin: 10px auto;
     background: #222;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .code p {
@@ -293,4 +311,72 @@ figure {
     flex: 50%;
 }
 
-    
+.mainflexCode {
+    flex: 50%;
+    padding: 20px;
+}
+
+.sideInfoCode {
+    flex: 50%;
+    padding: 10px;
+}
+
+.mainflexRegister {
+    flex: 50%;
+    padding: 20px;
+}
+
+.sideInfoRegister {
+    flex: 50%;
+    padding: 10px;
+}
+
+    .sideInfoRegister table {
+        margin: 10px auto;
+        background: #fff;
+        padding: 10px 10px;
+        box-shadow: 6px 6px 5px #111;
+        border-left: 10px solid #5805ac;
+        border-collapse: collapse;
+    }
+
+        .sideInfoRegister table tr {
+            border: 1px solid black;
+        }
+
+            .sideInfoRegister table tr td {
+                font-size: 2em;
+                padding: 4px;
+                /*color: black;*/
+                /*border: 1px dotted blue;*/
+            } 
+
+.sideInfo {
+    background: #ebeaea;
+    background-image: url(../common/images/top_header_mac.png);
+    background-repeat: repeat-x;
+    flex: 15%;
+    padding: 8px 10px 10px 10px;
+    margin-right: 20px;
+    box-shadow: 6px 6px #111;
+    border: 1px solid black;
+}
+
+    .sideInfo a {
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid black;
+        margin: 0 35%;
+        padding: 10px 30px;
+        box-shadow: 3px 3px #111;
+        border-radius: 5px;
+        background: white;
+        
+    }
+
+        .sideInfo a:hover {
+            color: white;
+            background: black;
+        }
+
+       

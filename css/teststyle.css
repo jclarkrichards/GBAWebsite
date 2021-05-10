@@ -220,6 +220,7 @@ h1 {
     padding-left: 20px;
     margin-left: 10px;
     margin-right: 10px;
+    background: #beb8e4;
 }
     .imgGroup img {
         border: 1px solid red;
@@ -233,6 +234,7 @@ h1 {
         padding-left: 20px;
         margin-left: 10px;
         margin-right: 10px;
+        background: #beb8e4;
     }
 
     .headerNumber {
