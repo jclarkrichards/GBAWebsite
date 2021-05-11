@@ -86,7 +86,7 @@ body {
 
 
 .intro {
-    background: #c4b2fa;
+    background: #eadefb;
     margin: 0 20px;
     padding: 10px;
     border-top: 10px solid black;
@@ -100,7 +100,7 @@ body {
 
 .conclusion {
     padding: 10px;
-    background: #c4b2fa;
+    background: #cfcece;
     margin: 20px;
     padding-bottom: 80px;
     background-image: url(../common/images/GBA_title_icon.png);
@@ -112,7 +112,7 @@ body {
 }
 
     .conclusion h1 {
-        background: #8b65fb;
+        background: #888;
         padding: 5px;
     }
 
