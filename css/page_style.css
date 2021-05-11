@@ -22,6 +22,12 @@ body {
     padding-bottom: 20px;
 }
 
+.maincontent > p {
+    margin: 20px;
+    padding: 10px;
+    background: #b9b8b8;
+}
+
 .nav {
     display: flex;
     position: fixed;

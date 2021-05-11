@@ -148,7 +148,7 @@ div.floatright {
 
 
 .headergroup {
-    display: inline-block;
+    display: block;
     background-image: url(../images/dot_background.png);
     /*background: #222;*/
     width: 1366px;
@@ -291,6 +291,7 @@ div.code {
 figure {
     border: 1px solid black;
     padding: 10px;
+    
 }
 
 
@@ -379,4 +380,21 @@ figure {
             background: black;
         }
 
+
+.intro_img_right {
+    display: flex;
+    margin: 20px;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.intro {
+    flex: 70%;
+    padding: 10px;
+}
+
+.intro_img_right img {
+    flex: 30%;
+    padding: 10px;
+}
        

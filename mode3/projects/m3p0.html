@@ -30,24 +30,18 @@
 
 
           <div class="maincontent">
-              <div class="row">
-                  <div class="column">
-                      <p>
-                          In this tutorial we are going to start simple.  I mean really simple.  Take a look at the image on the right.  See that little red pixel?
-                          That's what we're going to make, and I'll show you how to do it step-by-step.  Creating something as simple as a single pixel can be more difficult than you might think.
-                      </p>
 
-                  </div>
-                  <div class="column">
-                      <figure>
-                          <img src="images/redpixel_zoom.png" alt="test image">
-                          <figcaption>
-                              Sample image for testing
-                          </figcaption>
-                      </figure>
-                  </div>
-
+              <div class="intro_img_right">
+                  <p>
+                      In this tutorial we are going to start simple.  I mean really simple.  Take a look at the image on the right.  See that little red pixel?
+                      That's what we're going to make, and I'll show you how to do it step-by-step.  Creating something as simple as a single pixel can be more 
+                      difficult than you might think.
+                  </p>
+                  <img src="images/redpixel_zoom.png" alt="test image">
               </div>
+
+
+            
 
 
 
@@ -329,21 +323,28 @@ main()
                       <h2 class="codeheader">*(volatile unsigned short*)0x06000000 = 0x001F;</h2>
 
                       <p>
-                          The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
-                          In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
-                          different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                          Looking at the next line of code you'll see that it looks similar to the previous line.  Based on that you should come to the conclusion
+                          that we're simply trying to store a value of 0x001F into memory address 0x0600:0000.  That is 100% correct, but what is that memory address 
+                          and why are we trying to store that particular value there?   
                       </p>
                       <p>
-                          Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
-                          address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
-                          So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                          Similar to how memory address 0x0400:0000 is the location of Input/Output registers, memory address 0x0600:0000 is the location of Video memory 
+                          or VRAM.  VRAM is a fairly big subject, so I would suggest visiting the link to the right if you want to learn more about it.  The other value of 0x001F 
+                          is what we are trying to store in VRAM.  This value actually represents a color, more specificly it represents red.  So what we're simply doing is 
+                          storing the color red into the first memory address in VRAM.  That first address in VRAM represents the first pixel on the Gameboy Advance screen which 
+                          is in the top left corner of the screen.
                       </p>
-                      <p>You'll notice that I have 3 bits set.  </p>
                   </div>
 
                   <div class="sideInfo">
                       <p class="sideheading">TIP</p>
                       <br />
+                      <p>
+                          Click here to learn more about VRAM.
+                      </p>
+                      <br /><br />
+                      <a href="../../common/vram.html">Go</a>
+                      <br /><br />
                       <p>
                           Click here to learn more about the colors in the GameBoy Advance.
                       </p>
