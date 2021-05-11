@@ -71,11 +71,15 @@ table tr th {
     align-items: flex-start;
 }
 
-.color_flex > p {
+.pgroup {
     flex: 40%;
     border: 1px solid red;
     margin: 20px 20px;
     padding: 10px 10px;
+}
+
+.pgroup p {
+    margin-bottom: 10px;
 }
 
 .color_group {
@@ -89,7 +93,7 @@ table tr th {
 
 .color_header {
     display: flex;
-    align-items: flex-start;
+    
 }
 
     .color_header p {
@@ -138,6 +142,18 @@ table tr th {
 .red {
     background: red;
     color: white;
+}
+
+.color_3columns {
+    display: flex;
+    
+}
+
+.color_group_3column {
+    flex: 30%;
+    margin: 0 20px;
+    border: 2px solid black;
+    background: blue;
 }
 
 

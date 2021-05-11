@@ -42,86 +42,28 @@
 
 
 
-            <div class="reg_group">
-                <div class="reg_header">
-                    <p>REG_DISP</p>
-                    <p>0x0400:0000</p>
-                    <p>0x0403</p>
 
-                </div>
-                <div class="reg_table">
-
-                    <table>
-                        <tr class="values">
-                            <th>F</th>
-                            <th>E</th>
-                            <th>D</th>
-                            <th>C</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
-
-                    <table>
-                        <tr class="values">
-                            <th>B</th>
-                            <th>A</th>
-                            <th>9</th>
-                            <th>8</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
-
-                    <table>
-                        <tr class="values">
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
-
-                    <table>
-                        <tr class="values">
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                    </table>
-
-                </div>
-            </div>
 
 
             <div class="color_flex">
-                <p>
-                    The layout on the right shows what is required to make a color on the Gameboy Advance.
-                    
-                </p>
-                
-                
+                <div class="pgroup">
+                    <p>
+                        Take a look at the following bit layout.  We can see that there are 16 bits here or 2 bytes.  The Gameboy Advance uses 2 bytes to store color information.
+                        However, out of those 16 bits it really only uses 15 bits.  That's why the last bit you see has an x, that bit is never used and is always 0.
+                        The reason it isn't used is because the Gameboy Advance stores colors in RGB format where each color channel uses 5 bits.  So you use 5 bits for red,
+                        5 bits for green, and 5 bits for blue.  Which bits correspond to which color is shown in the diagram.
+
+                    </p>
+                    <p>
+                        This means that each color channel can have 32 different values since 2<sup>5</sup> = 32.  Also, since we only use 15 bits to represent a color, we 
+                        can only have 2<sup>15</sup> = 32,768 colors represented on the Gameboy Advance.  Like I said before, not a ton of colors, but good enough.  
+                    </p>
+                    <p>
+                        So let's say we wanted to make pure red, green, and blue colors.  How would we do that?  Look at the diagrams below to see how.
+                    </p>
+                </div>
+
+
 
                 <div class="color_group">
                     <div class="color_header">
@@ -198,6 +140,299 @@
 
             </div>
 
+
+            <div class="color_3columns">
+                <div class="color_group_3column">
+                    <div class="color_header">
+                        <p>RED</p>
+                        <p>GBA Color</p>
+                        <p>0x001F</p>
+
+                    </div>
+                    <div class="color_table">
+
+                        <table>
+                            <tr class="values">
+                                <th>F</th>
+                                <th class="blue">E</th>
+                                <th class="blue">D</th>
+                                <th class="blue">C</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="blue">B</th>
+                                <th class="blue">A</th>
+                                <th class="green">9</th>
+                                <th class="green">8</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="green">7</th>
+                                <th class="green">6</th>
+                                <th class="green">5</th>
+                                <th class="red">4</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="red">3</th>
+                                <th class="red">2</th>
+                                <th class="red">1</th>
+                                <th class="red">0</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="color_group_3column">
+                    <div class="color_header">
+                        <p>15 Bits</p>
+                        <p>GBA Color</p>
+                        <p>0x0000</p>
+
+                    </div>
+                    <div class="color_table">
+
+                        <table>
+                            <tr class="values">
+                                <th>F</th>
+                                <th class="blue">E</th>
+                                <th class="blue">D</th>
+                                <th class="blue">C</th>
+                            </tr>
+                            <tr>
+                                <td>x</td>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>b</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="blue">B</th>
+                                <th class="blue">A</th>
+                                <th class="green">9</th>
+                                <th class="green">8</th>
+                            </tr>
+                            <tr>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>g</td>
+                                <td>g</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="green">7</th>
+                                <th class="green">6</th>
+                                <th class="green">5</th>
+                                <th class="red">4</th>
+                            </tr>
+                            <tr>
+                                <td>g</td>
+                                <td>g</td>
+                                <td>g</td>
+                                <td>r</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="red">3</th>
+                                <th class="red">2</th>
+                                <th class="red">1</th>
+                                <th class="red">0</th>
+                            </tr>
+                            <tr>
+                                <td>r</td>
+                                <td>r</td>
+                                <td>r</td>
+                                <td>r</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="color_group_3column">
+                    <div class="color_header">
+                        <p>15 Bits</p>
+                        <p>GBA Color</p>
+                        <p>0x0000</p>
+
+                    </div>
+                    <div class="color_table">
+
+                        <table>
+                            <tr class="values">
+                                <th>F</th>
+                                <th class="blue">E</th>
+                                <th class="blue">D</th>
+                                <th class="blue">C</th>
+                            </tr>
+                            <tr>
+                                <td>x</td>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>b</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="blue">B</th>
+                                <th class="blue">A</th>
+                                <th class="green">9</th>
+                                <th class="green">8</th>
+                            </tr>
+                            <tr>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>g</td>
+                                <td>g</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="green">7</th>
+                                <th class="green">6</th>
+                                <th class="green">5</th>
+                                <th class="red">4</th>
+                            </tr>
+                            <tr>
+                                <td>g</td>
+                                <td>g</td>
+                                <td>g</td>
+                                <td>r</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="red">3</th>
+                                <th class="red">2</th>
+                                <th class="red">1</th>
+                                <th class="red">0</th>
+                            </tr>
+                            <tr>
+                                <td>r</td>
+                                <td>r</td>
+                                <td>r</td>
+                                <td>r</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="reg_group">
+                <div class="reg_header">
+                    <p>REG_DISP</p>
+                    <p>0x0400:0000</p>
+                    <p>0x0403</p>
+
+                </div>
+                <div class="reg_table">
+
+                    <table>
+                        <tr class="values">
+                            <th>F</th>
+                            <th>E</th>
+                            <th>D</th>
+                            <th>C</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr class="values">
+                            <th>B</th>
+                            <th>A</th>
+                            <th>9</th>
+                            <th>8</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr class="values">
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr class="values">
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
 
 
 
