@@ -1,113 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>GBA Tutorials</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/reg_style.css">  <!--Style for displaying registers-->
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src=""></script>
-  <body>
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/reg_style.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/page_style.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/prism.css">
+<script src=""></script>
+<body>
 
-      <div class="content">
-        
-          <div class="nav">
-              <a href="../index.html">Home</a>
-              <a href="#">Setup</a>
-              <a href="#">Mode3</a>
-              <a href="#">Mode0</a>
-              <a href="#">Math Fun</a>
-              <a href="#">Prog Bits</a>
-              <a href="#">Contact</a>
-              <a href="#">Contact</a>
-          </div>
+    <div class="content">
 
-          <div class="headergroup">
-              <img src="images/GBA128.png" alt="gba" />
-              <div class="title">Environment Setup</div>
-              <!--<h1>Project Setup</h1>
-    <div class="rightline"></div>-->
-          </div>
+        <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="#">Setup</a>
+            <a href="#">Mode3</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">Prog Bits</a>
+            <a href="#">Contact</a>
+            <a href="#">Contact</a>
+        </div>
 
+        <div class="headergroup">
+            <p>GBA Colors</p>
+            <img src="images/GBA128.png" alt="gba" />
+        </div>
 
 
-          <div class="maincontent">
-              <div class="topintro">
-                  <p>
-                      If you're new to this site, then this should be the first thing you do.  You can't do any of the projects unless you set up your environment first.
-                      I have tried to make it as easy as possible for you to get up and running.  You just need to follow the steps below and you should be good to go.
-                      Make sure you run the test program at the end and that it compiles successfully before moving on to any of the projects.
-                  </p>
-              </div>
 
-
-              <div class="register">
-                  <table>
-                      <tr>
-                          <th colspan="5" align="left">REG_DISP</th>
-                          <th colspan="9" align="center">0x0400:0000</th>
-                          <th colspan="5" align="right">0x0403</th>
-                      </tr>
-                      <tr class="values">
-                          <td>F</td>
-                          <td>E</td>
-                          <td>D</td>
-                          <td>C</td>
-                          <td>&nbsp;</td>
-                          <td>B</td>
-                          <td>A</td>
-                          <td>9</td>
-                          <td>8</td>
-                          <td>&nbsp;</td>
-                          <td>7</td>
-                          <td>6</td>
-                          <td>5</td>
-                          <td>4</td>
-                          <td>&nbsp;</td>
-                          <td>3</td>
-                          <td>2</td>
-                          <td>1</td>
-                          <td>0</td>
-                      </tr>
-                      <tr>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>&nbsp;</td>
-                          <td>0</td>
-                          <td>1</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>&nbsp;</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>&nbsp;</td>
-                          <td>0</td>
-                          <td>0</td>
-                          <td>1</td>
-                          <td>1</td>
-                      </tr>
-                  </table>
-              </div>
+        <div class="maincontent">
+            <div class="intro">
+                <p>
+                    The Gameboy Advance can display a good number of colors.  Sure, it can't display millions of colors like your computer can, but it can at least
+                    display tens of thousands of colors.  That's a lot more than its predecesor, the Gameboy Color.
+                </p>
+                <p>
+                    So how many colors can the Gameboy Advance display?  To answer that question we need to know how many bits are required to store a color into memory.
+                </p>
+            </div>
 
 
 
 
+            <div class="reg_group">
+                <div class="reg_header">
+                    <p>REG_DISP</p>
+                    <p>0x0400:0000</p>
+                    <p>0x0403</p>
+
+                </div>
+                <div class="reg_table">
+
+                    <table>
+                        <tr class="values">
+                            <th>F</th>
+                            <th>E</th>
+                            <th>D</th>
+                            <th>C</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr class="values">
+                            <th>B</th>
+                            <th>A</th>
+                            <th>9</th>
+                            <th>8</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr class="values">
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr class="values">
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+
+            <div class="color_flex">
+                <p>
+                    The layout on the right shows what is required to make a color on the Gameboy Advance.
+                    
+                </p>
+                
+                
+
+                <div class="color_group">
+                    <div class="color_header">
+                        <p>15 Bits</p>
+                        <p>GBA Color</p>
+                        <p>0x0000</p>
+
+                    </div>
+                    <div class="color_table">
+
+                        <table>
+                            <tr class="values">
+                                <th>F</th>
+                                <th class="blue">E</th>
+                                <th class="blue">D</th>
+                                <th class="blue">C</th>
+                            </tr>
+                            <tr>
+                                <td>x</td>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>b</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="blue">B</th>
+                                <th class="blue">A</th>
+                                <th class="green">9</th>
+                                <th class="green">8</th>
+                            </tr>
+                            <tr>
+                                <td>b</td>
+                                <td>b</td>
+                                <td>g</td>
+                                <td>g</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="green">7</th>
+                                <th class="green">6</th>
+                                <th class="green">5</th>
+                                <th class="red">4</th>
+                            </tr>
+                            <tr>
+                                <td>g</td>
+                                <td>g</td>
+                                <td>g</td>
+                                <td>r</td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr class="values">
+                                <th class="red">3</th>
+                                <th class="red">2</th>
+                                <th class="red">1</th>
+                                <th class="red">0</th>
+                            </tr>
+                            <tr>
+                                <td>r</td>
+                                <td>r</td>
+                                <td>r</td>
+                                <td>r</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </div>
 
 
 
-              <h1>Conclusion</h1>
-              <div class="conclusion">
-
-                  <p>
-                      If you can successfully compile this simple project, then you should be good to go with the rest of the projects on this site. 
-
-                  </p>
-              </div>
 
 
+            <div class="conclusion">
+                <h1>Conclusion</h1>
+                <p>
+                    If you can successfully compile this simple project, then you should be good to go with the rest of the projects on this site.
 
+                </p>
+            </div>
 
 
 
@@ -117,28 +218,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          </div>
-      </div><!--content-->
-      <script src="../../js/prism.js"></script>
-  </body>
+        </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../../js/prism.js"></script>
+</body>
 </html>

@@ -1,1 +1,146 @@
-* { border: 1px solid red; }
+/** { border: 1px solid red; }*/
+* {
+    /*border: 1px solid blue;*/
+    /**/
+    box-sizing: border-box;
+    margin: 0;
+    /*border: 1px solid red;*/
+}
+
+
+
+.reg_group {
+    border: 4px solid black;
+    background: #7e25ff;
+    margin: 20px 20px;
+}
+
+.reg_header {
+    display: flex;
+}
+
+    .reg_header p {
+        flex: 30%;
+        text-align: center;
+        color: white;
+        font-size: 25px;
+    }
+
+        .reg_header p:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .reg_header p:last-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+.reg_table {
+    /**/
+    display: flex;
+    /*background: #cf4c4c;*/
+    background-image: url(../common/images/checker_blue.png);
+    padding: 20px 0;
+    /*margin: 20px 0;*/
+}
+
+    .reg_table table {       
+        flex: 25%;
+        margin: 0 10px;
+        box-shadow: 6px 6px #111;
+        border-collapse: collapse;
+    }
+
+    
+
+table tr td, th {
+    text-align: center;
+    border: 1px solid black;
+    background: white;
+}
+
+table tr th {
+    background: #c4c1c1;
+}
+
+
+/*Color Tables*/
+.color_flex {
+    display: flex;
+    align-items: flex-start;
+}
+
+.color_flex > p {
+    flex: 40%;
+    border: 1px solid red;
+    margin: 20px 20px;
+    padding: 10px 10px;
+}
+
+.color_group {
+    flex: 60%;
+    
+    
+    border: 4px solid black;
+    background: #7e25ff;
+    margin: 20px 20px;
+}
+
+.color_header {
+    display: flex;
+    align-items: flex-start;
+}
+
+    .color_header p {
+        flex: 30%;
+        text-align: center;
+        color: white;
+        font-size: 25px;
+    }
+
+        .color_header p:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .color_header p:last-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+.color_table {
+    /**/
+    display: flex;
+    /*background: #cf4c4c;*/
+    background-image: url(../common/images/checker_blue.png);
+    padding: 20px 0;
+    /*margin: 20px 0;*/
+}
+
+    .color_table table {
+        flex: 25%;
+        margin: 0 10px;
+        box-shadow: 6px 6px #111;
+        border-collapse: collapse;
+    }
+
+.blue {
+    background: blue;
+    color: white;
+}
+
+.green {
+    background: green;
+    color: white;
+}
+
+.red {
+    background: red;
+    color: white;
+}
+
+
+
+
+
