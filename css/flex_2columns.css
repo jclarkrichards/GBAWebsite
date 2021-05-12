@@ -1,0 +1,38 @@
+
+.text_img_6040 {
+    display: flex;
+    align-content: flex-start;
+    margin: 0 20px 20px 20px;
+    border-bottom: 4px solid black;
+}
+
+    .text_img_6040 .text_group {
+        flex: 60%;
+        
+        padding: 10px;
+    }
+
+    .text_img_6040 img {
+        flex: 40%;
+        
+        padding: 10px;
+    }
+
+
+.text_table_6040 {
+    display: flex;
+    align-content: flex-start;
+    margin: 0 20px 20px 20px;
+    border-bottom: 4px solid black;
+}
+
+.text_table_6040 .text_group {
+    flex: 60%;
+    padding: 10px;
+}
+
+.text_table_6040 table {
+    flex: 40%;
+    padding: 10px;
+}
+
