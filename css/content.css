@@ -1,5 +1,7 @@
 .content_group * {
-   
+    /*
+    border: 1px solid red;
+        */
 }
 
 .content_group {
@@ -131,4 +133,80 @@ pre > code {
     padding: 10px;
     text-align: center;
 }
+
+.content_row > .table_text {
+    flex: 60%;
+    margin: 0 10px;
+}
+
+.content_row .table_text p {
+    padding: 5px 10px;
+}
+
+.content_row > .table_info {
+    flex: 40%;
+    margin: 0 10px;
+    box-shadow: 5px 5px black;
+}
+
+
+.table_info {
+    background: #ebeaea;
+    border: 1px solid black;
+}
+
+.table_group {
+
+}
+
+.table_group .table_header {
+    display: flex;
+    
+}
+
+    .table_group .table_header p {
+        flex: 30%;
+        text-align: center;
+        background: white;
+        font-size: 25px;
+        padding: 5px 0;
+        border-bottom: 2px solid black;
+    }
+
+        .table_group .table_header p:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .table_group .table_header p:last-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+
+
+    .table_group .tables {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 40px;
+    }
+
+.table_group .tables table {
+    flex: 25%;
+    margin: 0 10px;
+    box-shadow: 4px 4px #111;
+    border-collapse: collapse;
+}
+
+.table_group .tables table tr td, th {
+    text-align: center;
+    border: 1px solid black;
+    background: white;
+}
+
+.table_group .tables table tr th {
+    background: #c4c1c1;
+}
+
+
        
