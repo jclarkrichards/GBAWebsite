@@ -1,0 +1,212 @@
+.content_group * {
+    /*
+    border: 1px solid red;
+        */
+}
+
+.content_group {
+    margin: 20px;
+    border: 1px solid black;
+}
+
+.content_row {
+    display: flex;
+    align-content: flex-start;
+    
+    padding: 10px;
+}
+
+.content_group > h1 {
+    padding: 5px 10px;
+    border-bottom: 4px solid black;
+}
+
+.content_row .text {
+    flex: 70%;
+    padding: 5px 10px;
+    margin: 0 10px;
+}
+
+.content_row .info {
+    flex: 30%;
+    background: #ebeaea;
+    background-image: url(../common/images/top_header_mac.png);
+    background-repeat: repeat-x;
+    padding: 0 10px 10px 10px;  
+    margin: 0 10px;
+    box-shadow: 5px 5px #111;
+    border: 1px solid black;
+}
+
+.info > h3 {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    
+}
+
+.info > a {
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid black;
+    margin: 0 35%;
+   
+    padding: 10px 30px;
+    box-shadow: 3px 3px #111;
+    border-radius: 5px;
+    background: white;
+}
+
+.info > a:hover {
+    color: white;
+    background: black;
+}
+
+.info > p {
+
+}
+
+
+
+
+.content_row > .codetext {
+    flex: 50%;
+    padding: 5px 10px;
+    margin: 0 10px;
+}
+
+.content_row > .code {
+    flex: 50%;
+    border: 1px solid black;
+    box-shadow: 5px 5px black;
+}
+
+.code > pre {
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+pre > code {
+    background: white !important;
+    display: block;
+    border: 1px solid black !important;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: 250px;
+    
+    /*
+    border-left: 10px solid black;
+    
+    
+    
+    padding-left: 20px;
+    */
+}
+
+.code > h3 {
+    margin: 0;
+    border-bottom: 2px solid black;
+}
+
+
+
+/*Intro stuff
+.intro_group * {border: 1px solid red;}*/
+
+.intro_group {
+    display: flex;
+    margin: 20px;
+}
+
+.intro_text {
+    flex: 60%;
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    border-top: 10px solid black;
+    border-bottom: 4px solid black;
+}
+
+.intro_image {
+    flex: 40%;
+    padding: 10px;
+    text-align: center;
+}
+
+.content_row > .table_text {
+    flex: 60%;
+    margin: 0 10px;
+}
+
+.content_row .table_text p {
+    padding: 5px 10px;
+}
+
+.content_row > .table_info {
+    flex: 40%;
+    margin: 0 10px;
+    box-shadow: 5px 5px black;
+}
+
+
+.table_info {
+    background: #ebeaea;
+    border: 1px solid black;
+}
+
+.table_group {
+
+}
+
+.table_group .table_header {
+    display: flex;
+    
+}
+
+    .table_group .table_header p {
+        flex: 30%;
+        text-align: center;
+        background: white;
+        font-size: 25px;
+        padding: 5px 0;
+        border-bottom: 2px solid black;
+    }
+
+        .table_group .table_header p:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .table_group .table_header p:last-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+
+
+    .table_group .tables {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 40px;
+    }
+
+.table_group .tables table {
+    flex: 25%;
+    margin: 0 10px;
+    box-shadow: 4px 4px #111;
+    border-collapse: collapse;
+}
+
+.table_group .tables table tr td, th {
+    text-align: center;
+    border: 1px solid black;
+    background: white;
+}
+
+.table_group .tables table tr th {
+    background: #c4c1c1;
+}
+
+
+       

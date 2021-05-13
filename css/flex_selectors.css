@@ -5,13 +5,19 @@
 
 .project_group {
     margin: 20px;
-    border: 1px dashed red;
+    /*border: 1px dashed red;*/
+    border: 1px solid black;
 }
 
-.project_group > h1 {
-    border-bottom: 4px solid black;
-    font-size: 1.5em;
-}
+    .project_group > h1 {
+        /*background: #ebeaea;
+        background-image: url(../common/images/top_header_mac.png);
+        background-repeat: repeat-x;
+        background-size: auto;*/
+        border-bottom: 4px solid black;
+        font-size: 1.5em;
+        padding: 5px;
+    }
 
 
 
@@ -46,7 +52,8 @@
 }
 
     .widget > a:hover {
-        background-image: url(../common/images/checker_gray.png);
+        background: #c1c0c0;
+        background-image: url(../common/images/GBA128.png);
         border: 4px solid white;
         transform: scale(1.25);
         box-shadow: 0 0 8px #808080;

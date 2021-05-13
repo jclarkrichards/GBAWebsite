@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" href="../css/reg_style.css">-->  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/flex_selectors.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/content.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/page_style.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/prism.css">
+<script src=""></script>
+<body>
+
+    <div class="content">
+
+        <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../common/setup.html">Setup</a>
+            <a href="../common/basics.html">Basics</a>
+            <a href="#">Mode3</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="headergroup">
+            <p>GBA Tutorials</p>
+            <img src="../images/GBA128.png" alt="gba" />
+        </div>
+
+
+
+        <div class="maincontent">
+            <div class="intro_group">
+                <div class="intro_text">
+                    <p>
+                        In this tutorial we are going to start simple.  I mean really simple.  Take a look at the image on the right.  See that little red pixel?
+                        That's what we're going to make, and I'll show you how to do it step-by-step.  Creating something as simple as a single pixel can be more
+                        difficult than you might think.
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="intro_image">
+                    <img src="projects/images/redpixel_zoom.png" alt="test image">
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1>Setup</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            If you haven't already open up the Programmer's Notepad or whatever editor you're using and create a new empty project.
+                            This will usually be the first task in all of our projects, so that's why I've created a page that explains how to create an empty project and get it ready for our code.
+                            If you need help setting the project up, look at the sidebar on the right.
+                        </p>
+                    </div>
+
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            Creating an empty project is the first step.
+                        </p>
+                        <br /><br />
+                        <a href="../common/skeleton.html">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_group">
+                <h1>Create program</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            The first thing we're going to do is create a file called main.cpp and stick the the following code into it.
+                            There's really only 4 lines of code to worry about, but it probably all looks like gibberish to you.
+                            Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you've programmed in C or C++ before.
+                        </p>
+                        <p>
+                            The while(1); line just means to loop forever.  You actually don't need it in this particular program for it to work.
+                            I always just include it by default since it's basically the game loop.  When we start working on more complicated projects,
+                            then we'll put stuff in that loop, but for now it's empty.
+                        </p>
+                        <p>
+                            The return 0 line is standard in C and C++.   Notice that our main function has to return an integer when the program finishes.
+                            If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.
+                            If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
+                        </p>
+                        <p>Now for the first line, which I'll explain below.</p>
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+main()
+{
+    *(volatile unsigned short*)0x04000000 = 0x0403;
+    *(volatile unsigned short*)0x06000000 = 0x001F;
+    while(1);
+    return 0;
+}                  
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="content_group">
+                <h1 class="codeheader">*(volatile unsigned short*)0x04000000 = 0x0403;</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
+                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
+                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                        </p>
+                        <p>
+                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
+                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
+                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                        </p>
+                        <p>You'll notice that I have 3 bits set.  </p>
+                    </div>
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            To learn more about this register click the following button.
+                        </p>
+                        <br /><br />
+                        <a href="#">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="content_group">
+                <h1 class="codeheader">Bits Layout</h1>
+                <div class="content_row">
+                    <div class="table_text">
+                        <p>
+                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
+                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
+                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                        </p>
+                        <p>
+                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
+                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
+                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                        </p>
+                        <p>You'll notice that I have 3 bits set.  </p>
+                    </div>
+
+                    <div class="table_info">
+                        <div class="table_group">
+                            <div class="table_header">
+                                <p>REG_DISP</p>
+                                <p>0x0400:0000</p>
+                                <p>0x0403</p>
+
+                            </div>
+                            <div class="tables">
+
+                                <table>
+                                    <tr class="values">
+                                        <th>F</th>
+                                        <th>E</th>
+                                        <th>D</th>
+                                        <th>C</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>B</th>
+                                        <th>A</th>
+                                        <th>9</th>
+                                        <th>8</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>7</th>
+                                        <th>6</th>
+                                        <th>5</th>
+                                        <th>4</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th>0</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--content_row-->
+            </div><!--content_group-->
+
+
+
+            <div class="content_group">
+                <h1 class="codeheader">*(volatile unsigned short*)0x06000000 = 0x001F;</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
+                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
+                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                        </p>
+                        <p>
+                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
+                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
+                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                        </p>
+                        <p>You'll notice that I have 3 bits set.  </p>
+                    </div>
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            To learn more about this register click the following button.
+                        </p>
+                        <br /><br />
+                        <a href="#">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1 class="codeheader">Bits Layout</h1>
+                <div class="content_row">
+                    <div class="table_text">
+                        <p>
+                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
+                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
+                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                        </p>
+                        <p>
+                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
+                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
+                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                        </p>
+                        <p>You'll notice that I have 3 bits set.  </p>
+                    </div>
+
+                    <div class="table_info">
+                        <div class="table_group">
+                            <div class="table_header">
+                                <p>RED</p>
+                                <p>0x0600:0000</p>
+                                <p>0x001F</p>
+
+                            </div>
+                            <div class="tables">
+
+                                <table>
+                                    <tr class="values">
+                                        <th>F</th>
+                                        <th>E</th>
+                                        <th>D</th>
+                                        <th>C</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>B</th>
+                                        <th>A</th>
+                                        <th>9</th>
+                                        <th>8</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>7</th>
+                                        <th>6</th>
+                                        <th>5</th>
+                                        <th>4</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th>0</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--content_row-->
+            </div><!--content_group-->
+
+
+
+
+
+            <div class="conclusion">
+                <h1>Conclusion</h1>
+                <p>
+                    If you can successfully compile this simple project, then you should be good to go with the rest of the projects on this site.
+
+                </p>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../js/prism.js"></script>
+</body>
+</html>
