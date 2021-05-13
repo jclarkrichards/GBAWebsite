@@ -25,7 +25,7 @@
         </div>
 
         <div class="headergroup">
-            <p>GBA Tutorials</p>
+            <p>Single Red Pixel</p>
             <img src="../images/GBA128.png" alt="gba" />
         </div>
 
@@ -80,7 +80,7 @@
                 <div class="content_row">
                     <div class="codetext">
                         <p>
-                            The first thing we're going to do is create a file called main.cpp and stick the the following code into it.
+                            Assuming you now have your project set up, the first thing we're going to do is create a file called main.cpp and stick the the following code into it.
                             There's really only 4 lines of code to worry about, but it probably all looks like gibberish to you.
                             Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you've programmed in C or C++ before.
                         </p>
@@ -94,7 +94,7 @@
                             If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.
                             If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
                         </p>
-                        <p>Now for the first line, which I'll explain below.</p>
+                        <p>Now for the next two gibberish lines, which I'll explain below.</p>
                     </div>
 
 
@@ -133,7 +133,7 @@ main()
                             address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
                             So, there's really only 2 things we need to set:  The mode we're using and which background to use.
                         </p>
-                        <p>You'll notice that I have 3 bits set.  </p>
+                       
                     </div>
 
                     <div class="info">
@@ -144,7 +144,7 @@ main()
                             To learn more about this register click the following button.
                         </p>
                         <br /><br />
-                        <a href="#">Go</a>
+                        <a href="../registers/display.html">Go</a>
                         <br /><br />
                     </div>
                 </div>
@@ -163,16 +163,13 @@ main()
                 <div class="content_row">
                     <div class="table_text">
                         <p>
-                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
-                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
-                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                            For our purposes, these are the bits we want to set for the display register.  If you go to the link above you can see exactly what these bits correspond to.
+                            The first two bits on the end tells the Gameboy Advance to use mode 3.  Mode 3 is a bitmap mode and allows us to draw individual pixels to the screen.  
                         </p>
                         <p>
-                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
-                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
-                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                            The third bit we have set says that we want to use background 2.  You have to use background 2 in mode 3.  Try using the other backgrounds, they won't work.
+                            So make sure you have this bit set or you won't see anything on your screen.
                         </p>
-                        <p>You'll notice that I have 3 bits set.  </p>
                     </div>
 
                     <div class="table_info">
@@ -259,16 +256,19 @@ main()
                 <div class="content_row">
                     <div class="text">
                         <p>
-                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
-                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
-                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                            Knowing what we know from the explanation above this probably doesn't look as intimidating now right?  We can see that we are storing a 2 byte value into 
+                            memory location 0x0600:0000.  The two questions you need to be asking are, what does that 2 byte value mean and why are we storing it here?
+
                         </p>
                         <p>
-                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
-                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
-                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
+                            First off, the memory address 0x0600:0000 refers to Video Memory or VRAM for short.  The Gameboy Advance has 96KB of VRAM and this is where it starts.  In mode 3
+                            location in VRAM corresponds directly to the location of pixels on the screen.  The first pixel on the screen is in the top left corner, so this should 
+                            correspond to the first memory address in VRAM.
                         </p>
-                        <p>You'll notice that I have 3 bits set.  </p>
+                        <p>
+                            The value we're trying to store in this location represents a color.  In fact, it represents the color red.  I would suggest you click on the link to learn more
+                            about colors on the Gameboy Advance.
+                        </p>
                     </div>
 
                     <div class="info">
@@ -276,10 +276,16 @@ main()
 
                         <br />
                         <p>
-                            To learn more about this register click the following button.
+                            Click here to learn more about VRAM.
                         </p>
                         <br /><br />
-                        <a href="#">Go</a>
+                        <a href="../memory/vram.html">Go</a>
+                        <br /><br />
+                        <p>
+                            Click here to learn more about colors.
+                        </p>
+                        <br /><br />
+                        <a href="../common/colors.html">Go</a>
                         <br /><br />
                     </div>
                 </div>
@@ -291,16 +297,9 @@ main()
                 <div class="content_row">
                     <div class="table_text">
                         <p>
-                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
-                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
-                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
+                            So these two bytes represent the color red.  We know this because all of the 5 red bits are set and none of the other bits are set.  You can choose any color you
+                            want to use, just set the correct bits.  
                         </p>
-                        <p>
-                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
-                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
-                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
-                        </p>
-                        <p>You'll notice that I have 3 bits set.  </p>
                     </div>
 
                     <div class="table_info">
