@@ -1,0 +1,93 @@
+.project_group * {
+    /*border: 1px solid red;*/
+    
+}
+
+.project_group {
+    margin: 20px;
+    /*border: 1px dashed red;*/
+    border: 1px solid black;
+}
+
+    .project_group > h1 {
+        /*background: #ebeaea;
+        background-image: url(../common/images/top_header_mac.png);
+        background-repeat: repeat-x;
+        background-size: auto;*/
+        border-bottom: 4px solid black;
+        font-size: 1.5em;
+        padding: 5px;
+    }
+
+
+
+.project_row {
+    display: flex;
+    align-content: flex-start;
+    margin: 10px 0;
+    padding: 10px;
+   
+    justify-content: center;
+    align-items: center;
+}
+
+    .project_row > .widget {
+        
+        flex: 25%;
+        padding: 10px;
+        margin: 0 10px;
+        
+        text-align: center;
+        
+    }
+
+.widget > a {
+    display: inline-block;
+    margin: 0 auto 10px auto;
+    padding: 0;
+    border: 4px solid black;
+    vertical-align: middle;
+    box-shadow: 2px 2px 4px #636262;
+    
+}
+
+    .widget > a:hover {
+        background: #c1c0c0;
+        background-image: url(../common/images/GBA128.png);
+        border: 4px solid white;
+        transform: scale(1.25);
+        box-shadow: 0 0 8px #808080;
+        transform: rotate(10deg) scale(1.25);
+        
+    }
+
+.widget a img {
+    display: block;
+    margin: auto;
+}
+
+.widget p {
+    
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.text_table_6040 {
+    display: flex;
+    align-content: flex-start;
+    margin: 0 20px 20px 20px;
+    border-bottom: 4px solid black;
+}
+
+.text_table_6040 .text_group {
+    flex: 60%;
+    padding: 10px;
+}
+
+.text_table_6040 table {
+    flex: 40%;
+    padding: 10px;
+}
+

@@ -1,15 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>GBA Tutorials</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="">
-  <script src=""></script>
-  <body>
-      <div class="">
-          <h1>Dzien dobry</h1>
-          <p>Ja jestem Jan.</p>
-          <a href="common/basics.html">Single Pixel</a>
-          <a href="mode3/projects/m3p0.html">Single Pixel</a>
-      </div>
-  </body>
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/reg_style.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="css/flex_selectors.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="css/page_style.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="css/prism.css">
+<script src=""></script>
+<body>
+
+    <div class="content">
+
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="common/setup.html">Setup</a>
+            <a href="common/basics.html">Basics</a>
+            <a href="mode3/projects/m3p0.html">Mode3</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="headergroup">
+            <p>GBA Tutorials</p>
+            <img src="images/GBA128.png" alt="gba" />
+        </div>
+
+
+
+        <div class="maincontent">
+            <div class="intro">
+                <p>
+                    Hopefully the domain is self explanatory, but this site is all about programming for the Gameboy Advance via small tutorials.  If you're new
+                    here, then welcome!  You should review the basics, then start with the projects in Mode3 first to get a handle on how things work.
+                </p>
+                <p>
+                    Programming for the Gameboy Advance is unlike any other programming you've done most likely.  For the most part it's just programming in C or C++,
+                    but with the added complexity of having to work directly with the memory on the GBA.  So hopefully you have a strong handle on pointers.  If you don't
+                    then check out the concepts page to learn what a pointer is and how to use it, especially in GBA land.
+                </p>
+                <p>
+                    Now this website isn't meant to cover everything on the GBA, you likely won't find much history here.  But you'll learn enough to complete and understand
+                    the simple projects that are presented here.  If you're interested in learning more like the real nuts and bolts, then there are other websites that
+                    do that.
+                </p>
+                <p>
+                    I started this site because I had dozens of GBA projects that I was working on and just wanted to share them.  If you enjoy them then great, if not
+                    then that's fine too.  I am not an authority on the GBA by any means and I'm not even the best programmer.  I do my best with what I know though,
+                    besides I think programming for the GBA is fun so that's all the motivation I need.
+                </p>
+            </div>
+
+
+
+            <div class="project_group">
+                <h1>Projects for Mode 3</h1>
+                <div class="project_row">
+                    <div class="widget">
+                        <a href="mode3/single_pixel.html"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Draw a single red pixel on the top left corner of the screen.</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Draw many random pixels on the screen.  Change the color of each pixel.</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Make a single pixel move around the screen.</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Random text that does not mean anything, this needs to be replaced by</p>
+                    </div>
+
+
+                </div>
+
+                <div class="project_row">
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Etch-A-Sketch</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Photo Album</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Game of Life</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Rule Number 30</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="project_group">
+                <h1>Projects for Mode 0</h1>
+                <div class="project_row">
+                    <div class="widget">
+                        <a href="mode3/projects/m3p0.html"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Draw a single sprite to the screen.</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Draw sprites of many shapes and sizes</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Make a sprite move around the screen</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Background Basics</p>
+                    </div>
+
+
+                </div>
+
+                <div class="project_row">
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Scrolling Background</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Parallax Scrolling</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Make a start screen</p>
+                    </div>
+
+                    <div class="widget">
+                        <a href="#"><img src="common/images/GBA_outline.png" alt="temp placeholder" /></a>
+                        <p>Something or rather</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../../js/prism.js"></script>
+</body>
 </html>
