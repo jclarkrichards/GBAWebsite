@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" href="../css/reg_style.css">-->  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/flex_selectors.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/content.css">  <!--Style for displaying registers-->
+
+<link rel="stylesheet" href="../css/prism.css">
+<link rel="stylesheet" href="../css/page_style.css">  <!--Style for displaying registers-->
+<script src=""></script>
+<body>
+
+    <div class="content">
+
+        <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../common/setup.html">Setup</a>
+            <a href="../common/basics.html">Basics</a>
+            <a href="concepts.html">Concepts</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="headergroup">
+            <p>Move Pixel</p>
+            <img src="../images/GBA128.png" alt="gba" />
+        </div>
+
+
+
+        <div class="maincontent">
+            <div class="intro_group">
+                <div class="intro_text">
+                    <p>
+                        This tutorial can be better appreciated if you've already followed the previous tutorial where we drew a single red pixel to the upper left corner
+                        of the screen.  In this tutorial we'll basically do the same thing, but we'll draw the pixel a different color and place it somewhere else on the screen.
+                        We will also clean the code up a bit and show you some techniques to make it more readable.
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="intro_image">
+                    <img src="../images/pixel_green.png" alt="test image">
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1>Setup</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            In this project we're going to make the pixel move around the screen.
+                        </p>
+                    </div>
+
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            Creating an empty project is the first step.
+                        </p>
+                        <br /><br />
+                        <a href="../common/skeleton.html">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+            <div class="content_group">
+                <h1>main.cpp</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            We are going to start with the code we wrote for the <a href="single_pixel2.html" class="inline_btn">second project</a>.  
+                        </p>
+                        <p>
+                            As always, copy this code and then compile and run it.  Once this is working without errors continue.  You can make the pixel any color and
+                            have it start from anywhere on the screen.
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define u16         unsigned short
+#define vu16        volatile u16
+
+#define REG_DISP    *(vu16*)0x04000000
+#define VRAM        (vu16*)0x06000000
+
+const int WIDTH = 240;
+const int HEIGHT = 160;
+
+int x = 120;
+int y = 80;
+
+u16 color15(u16 r, u16 g, u16 b);
+
+int main()
+{
+    REG_DISP = 0x0403;
+    vu16 *vram = VRAM;
+    vram[x + WIDTH * y] = color15(31, 0, 0);
+    while(1);
+    return 0;
+}     
+                            
+u16 color15(u16 r, u16 g, u16 b)
+{
+    return r | g << 5 | b << 10;
+}
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            
+
+
+            <div class="conclusion">
+                <h1>Conclusion</h1>
+                <p>
+                    The code looks a lot better now.  Go ahead and play around with it.  Set new values for x and y.  Change the color of the pixel to something else instead of red.  
+                    What does the value (12, 30, 5) look like?  A blue pixel would look like (0, 0, 31).  You can even draw more than 1 pixel onto the screen, so go ahead and do that.  
+                    Playing around and trying things is one of the best ways to learn something.  In the next tutorial we're going to do something interesting.  We are going to draw 
+                    thousands of pixels of random colors onto random locations.  
+
+
+                </p>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../js/prism.js"></script>
+</body>
+</html>

@@ -3,9 +3,8 @@
     "",
     "\\common",
     "\\css",
-    "\\mode3",
-    "\\mode3\\projects\\images"
+    "\\mode3"
   ],
-  "SelectedNode": "\\common\\colors.html",
+  "SelectedNode": "\\css\\page_style.css",
   "PreviewInSolutionExplorer": false
 }

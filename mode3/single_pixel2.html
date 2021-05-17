@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" href="../css/reg_style.css">-->  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/flex_selectors.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/content.css">  <!--Style for displaying registers-->
+
+<link rel="stylesheet" href="../css/prism.css">
+<link rel="stylesheet" href="../css/page_style.css">  <!--Style for displaying registers-->
+<script src=""></script>
+<body>
+
+    <div class="content">
+
+        <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../common/setup.html">Setup</a>
+            <a href="../common/basics.html">Basics</a>
+            <a href="#">Mode3</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="headergroup">
+            <p>Pixel Anywhere</p>
+            <img src="../images/GBA128.png" alt="gba" />
+        </div>
+
+
+
+        <div class="maincontent">
+            <div class="intro_group">
+                <div class="intro_text">
+                    <p>
+                        This tutorial can be better appreciated if you've already followed the previous tutorial where we drew a single red pixel to the upper left corner
+                        of the screen.  In this tutorial we'll basically do the same thing, but we'll draw the pixel a different color and place it somewhere else on the screen.
+                        We will also clean the code up a bit and show you some techniques to make it more readable.
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="intro_image">
+                    <img src="../images/pixel_green.png" alt="test image">
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1>Setup</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            If you haven't already open up the Programmer's Notepad or whatever editor you're using and create a new empty project.
+                            This will usually be the first task in all of our projects, so that's why I've created a page that explains how to create an empty project and get it ready for our code.
+                            If you need help setting the project up, look at the sidebar on the right.
+                        </p>
+                    </div>
+
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            Creating an empty project is the first step.
+                        </p>
+                        <br /><br />
+                        <a href="../common/skeleton.html">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_group">
+                <h1>Create main.cpp</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            This is the same code from the previous tutorial.  If it looks unfamiliar to you then I would suggest you go back and review that tutorial
+                            before proceeding with this one.  It basically just draws a single red pixel in the upper left corner of the screen.
+                        </p>
+                        <p>
+                            In this section what we'll do first is take this code and make it a lot more readable, extendable, and useable.  Then once we do that we'll modify the code
+                            so that the pixel can be placed anywhere on the screen and be any color we choose.
+                        </p>
+                        <p>
+                            For now just copy what you see here into your project and then compile and run the project to make sure everything is working so far.  If it is not working then
+                            try to fix the issue before continuing on with this tutorial.
+                        </p>
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+int main()
+{
+    *(volatile unsigned short*)0x04000000 = 0x0403;
+    *(volatile unsigned short*)0x06000000 = 0x001F;
+    while(1);
+    return 0;
+}                  
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!--Now we want to write code that will make this code more readable and so on.  -->
+            <div class="content_group">
+                <h1>Defines are fine!</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            First off we're going to define a few things.  Defines are a great way to make your code more readable.  We can turn something long like "volatile
+                            unsigned short" into something short and sweet like "vu16".  I use the number 16, because a short is 16 bits.  You may not remember how many bits a short has,
+                            so putting it in the name helps.  So anytime we use vu16 in our program, the program knows that we really mean "volatile unsigned short".
+                        </p>
+
+                        <p>
+                            Similar to that we can also rename calls to memory which is really nice because you're not going to remember all of the memory addresses.  It's easier to remember
+                            some word that represents that memory address.  These two memory addresses aren't hard to remember, but there are a lot more that you need to know.  We're just
+                            starting off nice and easy.  Notice how I can immediately use the "vu16" define in other defines.  That's super handy.
+                        </p>
+                        <p>
+                            So here "REG_DISP" refers to the display register.  It's a dereferenced pointer, so I can actually assign values directly to it.  The VRAM I will keep as a pointer,
+                            not dereferenced like REG_DISP.  So I can't just assign values directly to it, you'll see why in a second.
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define u16         unsigned short
+#define vu16        volatile u16
+
+#define REG_DISP    *(vu16*)0x04000000
+#define VRAM        (vu16*)0x06000000
+
+int main()
+{
+    *(volatile unsigned short*)0x04000000 = 0x0403;
+    *(volatile unsigned short*)0x06000000 = 0x001F;
+    while(1);
+    return 0;
+}                  
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1>Replace lines with improved lines</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            Ok, so we're going to comment out these two lines that we previously wrote and replace them with these three shorter lines.  I'm commenting them out, but you can
+                            go ahead and delete them.  You may think it's really 
+                            not that much of an improvement, but it is.  The main thing here is to look at the vram pointer.  The vram pointer points to the first memory address in VRAM
+                            by default, but if we give it a value in square brackets then we can point to some other memory location.  That means we can draw a pixel somewhere else instead
+                            of just in the top left corner.  Notice that I'm passing in a weird number of 19320 into the pointer.  This is telling the pointer to point to the location in 
+                            memory that corresponds to the 19320th pixel.  If you recompile and run the program again you'll see that the red dot is not in the middle of the screen.
+                        </p>
+                        <p>
+                            Are we making things easier or are we making them harder?  There should be an easier way to say exactly where we want to draw a pixel.  We should also find a better
+                            way to define a color.  Because you're not always going to remember that 0x001F means red, because you're not a robot.
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define u16         unsigned short
+#define vu16        volatile u16
+
+#define REG_DISP    *(vu16*)0x04000000
+#define VRAM        (vu16*)0x06000000
+
+int main()
+{
+    REG_DISP = 0x0403;
+    vu16 *vram = VRAM;
+    vram[19320] = 0x001F;
+    //*(volatile unsigned short*)0x04000000 = 0x0403;
+    //*(volatile unsigned short*)0x06000000 = 0x001F;
+    while(1);
+    return 0;
+}                  
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="content_group">
+                <h1>X and Y coordinates</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            So we know that the value 19320 refers to the pixel in the middle of the screen, but how did we calculate that value?  It wasn't just a lucky guess.  Remember that
+                            VRAM is just a large chunck of memory, 96KB to be exact.  When we're in mode 3, which we are, each 2 byte memory location points to a pixel on the screen starting
+                            with the pixel in the upper left corner.  The next memory location points to the pixel directly to the right of it and so on.  That first pixel in the upper left
+                            corner has a positional value of 0 since that's where we are pointing to by default.  The very last pixel on the screen which is in the lower right corner 
+                            has the positional value of 240*160 - 1 = 38399.  Why did we subtract a 1?  Well, a lot of it has to do with the counting starting at 0 instead of 1.  
+                        </p>
+                        <p>
+                            Given a 2 dimensional screen it would be better to use x and y coordinates to position our pixels.  Let's say we want to draw a pixel at x = 40 and y = 20.  In order
+                            to convert that into a 1 dimensional value we use this formula:  x + WIDTH * y.  The WIDTH is the width of the screen or 240 pixels.  We multiply that by y
+                            because y is the row value, we're saying that we want to draw the pixel on the 20th row and each row has 240 pixels.  Once we get there we just add on however many
+                            pixels are in x to get to the correct location.  So for the middle of the screen we have 120 + 240 * 80 = 193200 and the last pixel is 239 + 240 * 159 = 38399.  
+                            Again we use x = 239 instead of 240 because we start counting at 0, likewise with y = 159.
+                        </p>
+                        <p>
+                            So in our code we'll define two contants called WIDTH and HEIGHT.  We don't really need the HEIGHT constant yet, but we're defining WIDTH so we might as well.  
+                            Then we'll define our x and y variables.  Then in vram we'll replace the value of 19320 with the formula.  
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define u16         unsigned short
+#define vu16        volatile u16
+
+#define REG_DISP    *(vu16*)0x04000000
+#define VRAM        (vu16*)0x06000000
+
+const int WIDTH = 240;
+const int HEIGHT = 160;
+
+int x = 120;
+int y = 80;
+
+int main()
+{
+    REG_DISP = 0x0403;
+    vu16 *vram = VRAM;
+    vram[x + WIDTH * y] = 0x001F;
+    while(1);
+    return 0;
+}                  
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1>Colors</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            Instead of hard-coding in the color hex values which I know everyone loves to do, we'll instead write a function that will take in an (r, g, b) value and 
+                            calculate the value for us.  The function is called color15 since colors on the Gameboy Advance are 15 bits.  Each (r,g,b) value has to be between 0 and 31 though
+                            since those are the ranges.  If you need a refresher on colors on the Gameboy Advance then go check that out <a href="../common/colors.html" class="inline_btn">here</a>.
+                        </p>
+                        <p>
+                            The function is pretty short and sweet.  It's using bitwise operations here.  If you remember, the colors are stored in a 2 byte value where the first 5 bits define
+                            red, the next 5 bits define green, and then the next 5 bits define blue.  The last bit is never used.  With the bit-shifting like (g << 15) we're saying to take the 
+                            value for green which shouldn't be more than 5 bits and shift it over 5 bits because that's where all of the green bits are.  For blue we want to shift them over 10
+                            places because they're near the end.  We don't have to shift the red bits, because they're the first bits.  The bitwise OR which looks like a vertical line is 
+                            basically the glue that combines all of this into a nice 2 byte value that we can then store in vram.  
+                        </p>
+                        <p>
+                            If you're confused about bit-shifting and other bitwise operations, then do a bit of research and come back here.  They're not difficult concepts but can look
+                            intimidating.  
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define u16         unsigned short
+#define vu16        volatile u16
+
+#define REG_DISP    *(vu16*)0x04000000
+#define VRAM        (vu16*)0x06000000
+
+const int WIDTH = 240;
+const int HEIGHT = 160;
+
+int x = 120;
+int y = 80;
+
+u16 color15(u16 r, u16 g, u16 b);
+
+int main()
+{
+    REG_DISP = 0x0403;
+    vu16 *vram = VRAM;
+    vram[x + WIDTH * y] = color15(31, 0, 0);
+    while(1);
+    return 0;
+}     
+                            
+u16 color15(u16 r, u16 g, u16 b)
+{
+    return r | g << 5 | b << 10;
+}
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            
+
+
+            <div class="conclusion">
+                <h1>Conclusion</h1>
+                <p>
+                    The code looks a lot better now.  Go ahead and play around with it.  Set new values for x and y.  Change the color of the pixel to something else instead of red.  
+                    What does the value (12, 30, 5) look like?  A blue pixel would look like (0, 0, 31).  You can even draw more than 1 pixel onto the screen, so go ahead and do that.  
+                    Playing around and trying things is one of the best ways to learn something.  In the next tutorial we're going to do something interesting.  We are going to draw 
+                    thousands of pixels of random colors onto random locations.  
+
+
+                </p>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../js/prism.js"></script>
+</body>
+</html>

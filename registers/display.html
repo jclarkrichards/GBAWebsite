@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" href="../css/reg_style.css">-->  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/flex_selectors.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/content.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/page_style.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/prism.css">
+<script src=""></script>
+<body>
+
+    <div class="content">
+
+        <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../common/setup.html">Setup</a>
+            <a href="../common/basics.html">Basics</a>
+            <a href="#">Mode3</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="headergroup">
+            <p>Display Register</p>
+            <img src="../images/GBA128.png" alt="gba" />
+        </div>
+
+
+
+        <div class="maincontent">
+            <div class="intro">
+                <p>
+                    This page is about the display register and what all of the bits do.
+                </p>
+                            
+            </div>
+
+            <div class="content_group">
+                <h1 class="codeheader">Bits Layout</h1>
+                <div class="content_row">
+                    <div class="table_text">
+                        <p>
+                            The display register is the first register in memory block 0x0400:0000.  It is 2 bytes or 16 bits wide.  
+                            Like all of the other registers make sure you set this as volatile.  
+
+                        </p>
+                    </div>
+                    <div class="table_info">
+                        <div class="table_group">
+                            <div class="tables">
+                                <table>
+                                    <tr class="values">
+                                        <th>Name</th>
+                                        <th>Location</th>
+                                        <th>Size</th>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>REG_DISP</td>
+                                        <td>0x0400:0000</td>
+                                        <td>2 bytes</td>
+                                        
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                
+
+                <div class="content_group">
+                    <h1 class="codeheader">Bits Layout</h1>
+                    <div class="content_row">
+                        <div class="table_info">
+                            <div class="table_group">
+                                <div class="tables">
+                                    <table>
+                                        <tr class="values">
+                                            <th>F</th>
+                                            <th>E</th>
+                                            <th>D</th>
+                                            <th>C</th>
+                                        </tr>
+                                        <tr>
+                                            <td>OW</td>
+                                            <td>W1</td>
+                                            <td>W0</td>
+                                            <td>OBJ</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+                                        <tr class="values">
+                                            <th>B</th>
+                                            <th>A</th>
+                                            <th>9</th>
+                                            <th>8</th>
+                                        </tr>
+                                        <tr>
+                                            <td>BG3</td>
+                                            <td>BG2</td>
+                                            <td>BG1</td>
+                                            <td>BG0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+                                        <tr class="values">
+                                            <th>7</th>
+                                            <th>6</th>
+                                            <th>5</th>
+                                            <th>4</th>
+                                        </tr>
+                                        <tr>
+                                            <td>FB</td>
+                                            <td>OM</td>
+                                            <td>HB</td>
+                                            <td>PS</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+                                        <tr class="values">
+                                            <th>3</th>
+                                            <th>2</th>
+                                            <th>1</th>
+                                            <th>0</th>
+                                        </tr>
+                                        <tr>
+                                            <td>GB</td>
+                                            <td colspan="3">Mode</td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="table_info">
+                            <div class="table_group">
+                                <div class="tables">
+                                    <table>
+                                        <tr class="values">
+                                            <th>Bits</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+
+                                        </tr>
+                                        <tr>
+                                            <td>0-2</td>
+                                            <td>Mode</td>
+                                            <td>Set to mode 0-5</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>GB</td>
+                                            <td>Read only!  Gets set if the cartidge is a Gameboy or Gameboy Color.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>PS</td>
+                                            <td>Page Select.  Used only on modes 4 and 5.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>HB</td>
+                                            <td>Allows access to OAM in HBLANK which is normally locked.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>6</td>
+                                            <td>OM</td>
+                                            <td>Object mapping mode.  0 = 2D mapping and 1 = 1D mapping.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>7</td>
+                                            <td>FB</td>
+                                            <td>Force a screen blank.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>8-B</td>
+                                            <td>BG</td>
+                                            <td>Allows you to draw onto the backgrounds.  Just set which background(s) you want to use.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>C</td>
+                                            <td>OBJ</td>
+                                            <td>Allows you to draw sprites to the screen.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>D-F</td>
+                                            <td>BG</td>
+                                            <td>Backgrounds.</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+
+                <div class="content_group">
+                    <h1>Modes</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.  
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="content_group">
+                    <h1>Gameboy </h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>Page Select</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>HBLANK</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>Object Mapping</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>Force Blank</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>Backgrounds</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>Sprites</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_group">
+                    <h1>Window Masks</h1>
+                    <div class="content_row">
+                        <div class="text">
+                            <p>
+                                The Gameboy Advance has 6 display modes (0-5).  Modes 0-2 are sprite-based modes and modes 3-5 are bit-based modes.
+                            </p>
+                        </div>
+
+
+                        <div class="info">
+                            <h3>TIP</h3>
+
+                            <br />
+                            <p>
+                                Creating an empty project is the first step.
+                            </p>
+                            <br /><br />
+                            <a href="../common/skeleton.html">Go</a>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="conclusion">
+                    <h1>Conclusion</h1>
+                    <p>
+                        If you can successfully compile this simple project, then you should be good to go with the rest of the projects on this site.
+
+                    </p>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../js/prism.js"></script>
+</body>
+</html>

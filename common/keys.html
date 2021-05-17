@@ -25,7 +25,7 @@
         </div>
 
         <div class="headergroup">
-            <p>Single Red Pixel</p>
+            <p>Keys / Buttons</p>
             <img src="../images/GBA128.png" alt="gba" />
         </div>
 
@@ -35,16 +35,31 @@
             <div class="intro_group">
                 <div class="intro_text">
                     <p>
-                        In this tutorial we are going to start simple.  I mean really simple.  Take a look at the image on the right.  See that little red pixel?
-                        That's what we're going to make, and I'll show you how to do it step-by-step.  Creating something as simple as a single pixel can be more
-                        difficult than you might think.
+                        The Gameboy Advance has 10 buttons or keys.  Check out the image on the right and you'll see all of the buttons colored red.  Before you look at that and tell me that
+                        I'm wrong and that there are only 7 buttons, keep in mind that the directional pad has 4 buttons.
                     </p>
                     <p>
+                        These are all of the buttons on the Gameboy Advance:
+                    </p>
+                    <ol>
+                        <li>UP</li>
+                        <li>DOWN</li>
+                        <li>LEFT</li>
+                        <li>RIGHT</li>
+                        <li>B</li>
+                        <li>A</li>
+                        <li>L</li>
+                        <li>R</li>
+                        <li>START</li>
+                        <li>SELECT</li>
+                    </ol>
 
+                    <p>
+                        This section is all about what we have to do in order to use the buttons in the most common ways.
                     </p>
                 </div>
                 <div class="intro_image">
-                    <img src="../images/pixel_red.png" alt="test image">
+                    <img src="images/GBA_outline_keys.png" alt="test image">
                 </div>
             </div>
 
@@ -74,6 +89,114 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="content_group">
+                <h1 class="codeheader">Keypad Register</h1>
+                <div class="content_row">
+                    <div class="table_text">
+                        <p>
+                            There's a register that keeps track of which keys are being pressed.  This register has the memory location of 0x04000130 and is of course 2 bytes wide and is
+                            read-only.  That makes sense since there's really no reason you would need to write to it.
+                            Which bits correspond to which buttons are shown on the right.  What's interesting about this register is all of the bits that correspond to the keys
+                            normally have a value of 1 instead of 0.  You would think that all of the bits would be 0 if no keys are being pressed, and then when a certain key is
+                            pressed that bit would turn to a value of 1.  It's actually the opposite.  The bits are set to have a value of 1 and when a key is pressed, that bit
+                            changes its value to 0.  So when no keys are being pressed this register has a value of 0x03FF.
+                        </p>
+
+                        <p>
+                            So determining when a key is being pressed is pretty easy, we just need to watch when that keys bit turns to 0.  Lets see how all of that works next.
+                        </p>
+                    </div>
+
+                    <div class="table_info">
+                        <div class="table_group">
+                            <div class="table_header">
+                                <p>REG_KEYS</p>
+                                <p>0x0400:0130</p>
+                                <p>0x03FF</p>
+
+                            </div>
+                            <div class="tables">
+
+                                <table>
+                                    <tr class="values">
+                                        <th>F</th>
+                                        <th>E</th>
+                                        <th>D</th>
+                                        <th>C</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>B</th>
+                                        <th>A</th>
+                                        <th>9</th>
+                                        <th>8</th>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>L</td>
+                                        <td>R</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>7</th>
+                                        <th>6</th>
+                                        <th>5</th>
+                                        <th>4</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Down</td>
+                                        <td>Up</td>
+                                        <td>Left</td>
+                                        <td>Right</td>
+                                    </tr>
+                                </table>
+
+                                <table>
+                                    <tr class="values">
+                                        <th>3</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                        <th>0</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Start</td>
+                                        <td>Select</td>
+                                        <td>B</td>
+                                        <td>A</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--content_row-->
+            </div><!--content_group-->
+
+
+            
+
+
+
+
+
+
+
+
+
 
             <div class="content_group">
                 <h1>Create program</h1>
@@ -133,7 +256,7 @@ int main()
                             address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
                             So, there's really only 2 things we need to set:  The mode we're using and which background to use.
                         </p>
-                       
+
                     </div>
 
                     <div class="info">
@@ -164,7 +287,7 @@ int main()
                     <div class="table_text">
                         <p>
                             For our purposes, these are the bits we want to set for the display register.  If you go to the link above you can see exactly what these bits correspond to.
-                            The first two bits on the end tells the Gameboy Advance to use mode 3.  Mode 3 is a bitmap mode and allows us to draw individual pixels to the screen.  
+                            The first two bits on the end tells the Gameboy Advance to use mode 3.  Mode 3 is a bitmap mode and allows us to draw individual pixels to the screen.
                         </p>
                         <p>
                             The third bit we have set says that we want to use background 2.  You have to use background 2 in mode 3.  Try using the other backgrounds, they won't work.
@@ -256,13 +379,13 @@ int main()
                 <div class="content_row">
                     <div class="text">
                         <p>
-                            Knowing what we know from the explanation above this probably doesn't look as intimidating now right?  We can see that we are storing a 2 byte value into 
+                            Knowing what we know from the explanation above this probably doesn't look as intimidating now right?  We can see that we are storing a 2 byte value into
                             memory location 0x0600:0000.  The two questions you need to be asking are, what does that 2 byte value mean and why are we storing it here?
 
                         </p>
                         <p>
                             First off, the memory address 0x0600:0000 refers to Video Memory or VRAM for short.  The Gameboy Advance has 96KB of VRAM and this is where it starts.  In mode 3
-                            location in VRAM corresponds directly to the location of pixels on the screen.  The first pixel on the screen is in the top left corner, so this should 
+                            location in VRAM corresponds directly to the location of pixels on the screen.  The first pixel on the screen is in the top left corner, so this should
                             correspond to the first memory address in VRAM.
                         </p>
                         <p>
@@ -298,7 +421,7 @@ int main()
                     <div class="table_text">
                         <p>
                             So these two bytes represent the color red.  We know this because all of the 5 red bits are set and none of the other bits are set.  You can choose any color you
-                            want to use, just set the correct bits.  
+                            want to use, just set the correct bits.
                         </p>
                     </div>
 
@@ -388,20 +511,20 @@ int main()
                             Now that all of that is explained, all we have left to do is compile and run our little program.  Please make sure you have your project set up and structured
                             as explained in the Project Setup section and that you're Makefile is in place.  Once you've done that go ahead and press "Alt+1" in order to compile your project.
                             Now open up your Gameboy Advance emulator and navigate to your project folder and open up the file with the .gba extension.  What you should see is the image on the
-                            right.  You may not be able to see it, especially if you're color blind, but I would suggest making the window bigger.  You can set it to x4 the window size in the 
+                            right.  You may not be able to see it, especially if you're color blind, but I would suggest making the window bigger.  You can set it to x4 the window size in the
                             Options -> Video menu.
                         </p>
-                       <p>
+                        <p>
                             If you don't see the red pixel then try going through everything again fresh and see if there was anything you missed.  Remember, you can always shoot me an email
                             from the Contacts page if you have any issues, questions, or to tell me how awesome I am.
-                       </p>
+                        </p>
                     </div>
 
-                    
+
                     <div class="intro_image">
 
                         <img src="../images/pixel_red.png" alt="test image">
-                        
+
                     </div>
                 </div>
             </div>
@@ -410,9 +533,9 @@ int main()
             <div class="conclusion">
                 <h1>Conclusion</h1>
                 <p>
-                    Good job on completing this project!  I wish I had a prize for you, but I think that the satisfaction of completing something is prize enough, right?  
+                    Good job on completing this project!  I wish I had a prize for you, but I think that the satisfaction of completing something is prize enough, right?
                     Anyways, if you completed this you may be wondering how we can draw the pixel anywhere on the screen.  Check out the next tutorial because that is exactly
-                    what we'll cover in that tutorial.  We can even draw more than one pixel too!  Then later we'll make the pixel move around the screen.  
+                    what we'll cover in that tutorial.  We can even draw more than one pixel too!  Then later we'll make the pixel move around the screen.
                     So don't stop here, continue onwards in your GBA journey!
 
 

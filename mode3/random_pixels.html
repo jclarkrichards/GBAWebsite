@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>GBA Tutorials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" href="../css/reg_style.css">-->  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/flex_selectors.css">  <!--Style for displaying registers-->
+<link rel="stylesheet" href="../css/content.css">  <!--Style for displaying registers-->
+
+<link rel="stylesheet" href="../css/prism.css">
+<link rel="stylesheet" href="../css/page_style.css">  <!--Style for displaying registers-->
+<script src=""></script>
+<body>
+
+    <div class="content">
+
+        <div class="nav">
+            <a href="../index.html">Home</a>
+            <a href="../common/setup.html">Setup</a>
+            <a href="../common/basics.html">Basics</a>
+            <a href="#">Mode3</a>
+            <a href="#">Mode0</a>
+            <a href="#">Math Fun</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+        <div class="headergroup">
+            <p>Random Pixels</p>
+            <img src="../images/GBA128.png" alt="gba" />
+        </div>
+
+
+
+        <div class="maincontent">
+            <div class="intro_group">
+                <div class="intro_text">
+                    <p>
+                        If you know how to draw a single pixel onto the screen, then you really know how to draw any number of pixels on to the screen.  For this tutorial we're just going
+                        to create pixels and give them a random color and place them in a random position on the screen. 
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="intro_image">
+                    <img src="../images/random.png" alt="test image">
+                </div>
+            </div>
+
+
+            <div class="content_group">
+                <h1>Setup</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            If you haven't already open up the Programmer's Notepad or whatever editor you're using and create a new empty project.
+                            This will usually be the first task in all of our projects, so that's why I've created a page that explains how to create an empty project and get it ready for our code.
+                            If you need help setting the project up, look at the sidebar on the right.
+                        </p>
+                    </div>
+
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            Creating an empty project is the first step.
+                        </p>
+                        <br /><br />
+                        <a href="../common/skeleton.html">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_group">
+                <h1>Create main.cpp</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            If you followed from the previous tutorial, then most of the code is already in place.  Go ahead and copy this code into the main.cpp file and save it in
+                            the source folder.  Make sure you can compile and run this just fine before moving on.  If it doesn't work here and you go and modify it then it just makes it 
+                            harder to find the bugs.
+                        </p>
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define u16 		unsigned short
+#define vu16 		volatile u16
+
+#define REG_DISP 	*(vu16*)0x04000000
+#define VRAM 	  	(vu16*)0x06000000
+
+u16 color15(u16 r, u16 g, u16 b);
+
+const int WIDTH = 240;
+const int HEIGHT = 160;
+
+int x = 0;
+int y = 0;
+
+int main()
+{
+	REG_DISP = 0x0403;
+	vu16 *vram = VRAM;
+	vram[x + WIDTH*y] = color15(31, 0, 0);
+    while(1);
+    return 0;
+}    
+
+u16 color15(u16 r, u16 g, u16 b)
+{
+	return r | g << 5 | b << 10;
+}
+                 
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="content_group">
+                <h1>Include the standard library</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            Since we're going to be calling a random function we need to include the package that contains that function.  That package is called stdlib.h which stands for
+                            standard library.  
+                        </p>
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#include &lt;stdlib.h&gt;
+
+#define u16 		unsigned short
+#define vu16 		volatile u16
+
+#define REG_DISP 	*(vu16*)0x04000000
+#define VRAM 	  	(vu16*)0x06000000
+
+u16 color15(u16 r, u16 g, u16 b);
+
+const int WIDTH = 240;
+const int HEIGHT = 160;
+
+int x = 0;
+int y = 0;
+
+int main()
+{
+	REG_DISP = 0x0403;
+	vu16 *vram = VRAM;
+	vram[x + WIDTH*y] = color15(31, 0, 0);
+    while(1);
+    return 0;
+}    
+
+u16 color15(u16 r, u16 g, u16 b)
+{
+	return r | g << 5 | b << 10;
+}
+                 
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="content_group">
+                <h1>Create the random functions</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            Since we're going to be calling a random function we need to include the package that contains that function.  That package is called stdlib.h which stands for
+                            standard library.
+                        </p>
+
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#include &lt;stdlib.h&gt;
+
+#define u16 		unsigned short
+#define vu16 		volatile u16
+
+#define REG_DISP 	*(vu16*)0x04000000
+#define VRAM 	  	(vu16*)0x06000000
+
+u16 color15(u16 r, u16 g, u16 b);
+
+u16 randomColor();
+u16 randomLocation();
+
+const int WIDTH = 240;
+const int HEIGHT = 160;
+
+int x = 0;
+int y = 0;
+
+int main()
+{
+	REG_DISP = 0x0403;
+	vu16 *vram = VRAM;
+	//vram[x + WIDTH*y] = color15(31, 0, 0);
+ 
+    while(1)
+    {
+        vram[randomLocation()] = randomColor();
+    }
+    return 0;
+}    
+
+u16 color15(u16 r, u16 g, u16 b)
+{
+	return r | g << 5 | b << 10;
+}
+
+u16 randomColor() 
+{
+	u16 r = rand() % 32;
+	u16 g = rand() % 32;
+	u16 b = rand() % 32;
+	return color15(r, g, b);
+}
+
+u16 randomLocation()
+{
+	u16 x = rand() % WIDTH;
+	u16 y = rand() % HEIGHT;
+	return x + WIDTH * y;
+}
+                 
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            
+
+
+
+
+
+            
+
+
+            <div class="conclusion">
+                <h1>Conclusion</h1>
+                <p>
+                    The code looks a lot better now.  Go ahead and play around with it.  Set new values for x and y.  Change the color of the pixel to something else instead of red.  
+                    What does the value (12, 30, 5) look like?  A blue pixel would look like (0, 0, 31).  You can even draw more than 1 pixel onto the screen, so go ahead and do that.  
+                    Playing around and trying things is one of the best ways to learn something.  In the next tutorial we're going to do something interesting.  We are going to draw 
+                    thousands of pixels of random colors onto random locations.  
+
+
+                </p>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div><!--maincontent-->
+    </div><!--content-->
+    <script src="../js/prism.js"></script>
+</body>
+</html>
