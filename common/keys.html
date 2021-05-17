@@ -187,37 +187,37 @@
             </div><!--content_group-->
 
 
-            
-
-
-
-
-
-
-
-
+           
 
 
             <div class="content_group">
-                <h1>Create program</h1>
+                <h1>Basic Implementation</h1>
                 <div class="content_row">
                     <div class="codetext">
                         <p>
-                            Assuming you now have your project set up, the first thing we're going to do is create a file called main.cpp and stick the the following code into it.
-                            There's really only 4 lines of code to worry about, but it probably all looks like gibberish to you.
-                            Well, the first 2 lines should look like gibberish, but the last 2 lines should look familiar if you've programmed in C or C++ before.
+                            So how do we actually check for the key presses and what does that code actually look like?  The code you see to the right is not stand-alone code.  That means
+                            that you need to include this code somewhere in your project, running this code by itself won't do anything interesting.
                         </p>
                         <p>
-                            The while(1); line just means to loop forever.  You actually don't need it in this particular program for it to work.
-                            I always just include it by default since it's basically the game loop.  When we start working on more complicated projects,
-                            then we'll put stuff in that loop, but for now it's empty.
+                            We first need to have a pointer that points to the register that handles the key presses.  Make sure it is set as volatile and that it is dereferenced.  We're going to
+                            be constantly reading from this memory address.  We can't write to it because it is set as read-only.
                         </p>
                         <p>
-                            The return 0 line is standard in C and C++.   Notice that our main function has to return an integer when the program finishes.
-                            If some error occurred in the program and it has to terminate early then some integer will be returned that corresponds to some error code.
-                            If it makes it to this line here, then we can assume that everything ran fine and we can return 0, meaning that no errors have occurred.
+                            We also defined a 2 byte value called UP.  I'm doing this because in this example we are just checking when the user presses the up key on the keypad.  If you look
+                            at the memory layout above you'll see that the UP key corresponds to this value.
                         </p>
-                        <p>Now for the next two gibberish lines, which I'll explain below.</p>
+                        <p>
+                            Now if we look in the while loop, you'll see how I'm checking for this particular key press.  First off I flip the bits on our register.  That's because it just makes life
+                            easier when we correspond a "1" to a keypress and a "0" to no key press.  The GBA does it opposite, look at the explanation above.  We then do a bitwise AND operation on
+                            the UP value.  If the UP key is not being pressed, then this will result in a 0 or false.  If the UP key is being pressed then this will result in a non-zero value or true.
+                            When the check passes, when the UP key is being pressed, then we can execute the code.
+                        </p>
+                        <p>
+                            This will work for things like moving a character around the screen.  But it won't work if you just need to detect a single key press.  For example, if you need to pause
+                            the game by pressing the Start button, then when you press the start button you only want to register 1 press.  In other words, you only want to execute the pause code once
+                            and not continuously.  So we actually need to have two different kinds of key presses:  continuous and discrete presses.  The code here works for continuous, but we'll
+                            need to do a bit more for the discrete presses to work.
+                        </p>
                     </div>
 
 
@@ -225,11 +225,20 @@
                         <h3>main.cpp</h3>
                         <pre>
                         <code class="language-cpp">
+#define REG_KEYS    *(volatile unsigned short*)0x04000130
+#define UP          0x0040
+
 int main()
 {
     *(volatile unsigned short*)0x04000000 = 0x0403;
-    *(volatile unsigned short*)0x06000000 = 0x001F;
-    while(1);
+ 
+    while(1)
+    {
+        if(~REG_KEYS &amp; UP)
+        {
+            //The UP key is currently being pressed.
+        }
+    }
     return 0;
 }                  
                             </code>
@@ -238,6 +247,15 @@ int main()
                     </div>
                 </div>
             </div>
+
+
+
+
+            
+
+
+
+
 
 
 
