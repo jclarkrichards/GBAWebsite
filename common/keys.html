@@ -499,6 +499,11 @@ int main()
             //The UP key was just pressed 
         }
 
+        if((~curr &amp; prev) &amp; UP)
+        {
+            //The UP key was just released
+        }
+
         prev = curr;
         curr = ~REG_KEYS;
     }
@@ -518,7 +523,29 @@ int main()
                 <div class="content_row">
                     <div class="table_text">
                         <p>
-                            
+                            The first set of 4 rows shows the state everything is in when the UP key is
+                            initially pressed down.  The current state shows that the UP key is being pressed
+                            and the previous state shows that it was not pressed previously.  If you do a bitwise
+                            AND operation on the current state, the inverse of the previous state (~prev), and
+                            the UP key you'll see that you get a non-zero result.
+                                
+                        </p>
+                        <p>
+                            In the second set of 4 rows we're now in the state where the UP key is still being
+                            held down.  So here the current state and the previous state are the same in terms of
+                            the UP key being pressed.  Now if you take the bitwise AND operation on the current
+                            state, the inverse of the previous state (~prev), and the UP key you'll get a result
+                            of 0.  You'll continue to get 0 while holding the key down.  That is until you release
+                            the key and press it down again.
+                        </p>
+                        <p>
+                            Also notice that if you take the bitwise AND operation on the current state, previous state,
+                            and the UP key in second set you'll get a non-zero result which is what we want if we
+                            want to determine if the key is being held down.
+                        </p>
+                        <p>
+                            Finally, you can determine when a player has released a key by using the same three
+                            variables and inverting the current state rather than the previous state.  
                         </p>
                     </div>
 
@@ -886,306 +913,22 @@ int main()
 
 
 
+            
 
 
 
 
-
-            <div class="content_group">
-                <h1 class="codeheader">*(volatile unsigned short*)0x04000000 = 0x0403;</h1>
-                <div class="content_row">
-                    <div class="text">
-                        <p>
-                            The first line is shown above for easy reference.  This looks like a mess and you should never program this way unless you really like making life hard on yourself.
-                            In the future we'll make lines like this more readable, but I think it helps to see it in its more or less raw form.  The GameBoy Advance has a bunch of registers that serve
-                            different purposes.  Most of these registers are 16 bits wide and stored in an area of memory called the Input / Output Memory or IORAM which starts at memory address 0x0400:0000h.
-                        </p>
-                        <p>
-                            Below is one such register called the display register.  It's conveniently located in the first location in the IORAM, that is it has the same memory
-                            address of 0x0400:0000h.  There are various settings in here that we can set.  I'm not going to go over everything, just what we need to know for this project.
-                            So, there's really only 2 things we need to set:  The mode we're using and which background to use.
-                        </p>
-
-                    </div>
-
-                    <div class="info">
-                        <h3>TIP</h3>
-
-                        <br />
-                        <p>
-                            To learn more about this register click the following button.
-                        </p>
-                        <br /><br />
-                        <a href="../registers/display.html">Go</a>
-                        <br /><br />
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="content_group">
-                <h1 class="codeheader">Bits Layout</h1>
-                <div class="content_row">
-                    <div class="table_text">
-                        <p>
-                            For our purposes, these are the bits we want to set for the display register.  If you go to the link above you can see exactly what these bits correspond to.
-                            The first two bits on the end tells the Gameboy Advance to use mode 3.  Mode 3 is a bitmap mode and allows us to draw individual pixels to the screen.
-                        </p>
-                        <p>
-                            The third bit we have set says that we want to use background 2.  You have to use background 2 in mode 3.  Try using the other backgrounds, they won't work.
-                            So make sure you have this bit set or you won't see anything on your screen.
-                        </p>
-                    </div>
-
-                    <div class="table_info">
-                        <div class="table_group">
-                            <div class="table_header">
-                                <p>REG_DISP</p>
-                                <p>0x0400:0000</p>
-                                <p>0x0403</p>
-
-                            </div>
-                            <div class="tables">
-
-                                <table>
-                                    <tr class="values">
-                                        <th>F</th>
-                                        <th>E</th>
-                                        <th>D</th>
-                                        <th>C</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-
-                                <table>
-                                    <tr class="values">
-                                        <th>B</th>
-                                        <th>A</th>
-                                        <th>9</th>
-                                        <th>8</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>1</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-
-                                <table>
-                                    <tr class="values">
-                                        <th>7</th>
-                                        <th>6</th>
-                                        <th>5</th>
-                                        <th>4</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-
-                                <table>
-                                    <tr class="values">
-                                        <th>3</th>
-                                        <th>2</th>
-                                        <th>1</th>
-                                        <th>0</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!--content_row-->
-            </div><!--content_group-->
-
-
-
-            <div class="content_group">
-                <h1 class="codeheader">*(volatile unsigned short*)0x06000000 = 0x001F;</h1>
-                <div class="content_row">
-                    <div class="text">
-                        <p>
-                            Knowing what we know from the explanation above this probably doesn't look as intimidating now right?  We can see that we are storing a 2 byte value into
-                            memory location 0x0600:0000.  The two questions you need to be asking are, what does that 2 byte value mean and why are we storing it here?
-
-                        </p>
-                        <p>
-                            First off, the memory address 0x0600:0000 refers to Video Memory or VRAM for short.  The Gameboy Advance has 96KB of VRAM and this is where it starts.  In mode 3
-                            location in VRAM corresponds directly to the location of pixels on the screen.  The first pixel on the screen is in the top left corner, so this should
-                            correspond to the first memory address in VRAM.
-                        </p>
-                        <p>
-                            The value we're trying to store in this location represents a color.  In fact, it represents the color red.  I would suggest you click on the link to learn more
-                            about colors on the Gameboy Advance.
-                        </p>
-                    </div>
-
-                    <div class="info">
-                        <h3>TIP</h3>
-
-                        <br />
-                        <p>
-                            Click here to learn more about VRAM.
-                        </p>
-                        <br /><br />
-                        <a href="../memory/vram.html">Go</a>
-                        <br /><br />
-                        <p>
-                            Click here to learn more about colors.
-                        </p>
-                        <br /><br />
-                        <a href="../common/colors.html">Go</a>
-                        <br /><br />
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="content_group">
-                <h1 class="codeheader">Bits Layout</h1>
-                <div class="content_row">
-                    <div class="table_text">
-                        <p>
-                            So these two bytes represent the color red.  We know this because all of the 5 red bits are set and none of the other bits are set.  You can choose any color you
-                            want to use, just set the correct bits.
-                        </p>
-                    </div>
-
-                    <div class="table_info">
-                        <div class="table_group">
-                            <div class="table_header">
-                                <p>RED</p>
-                                <p>0x0600:0000</p>
-                                <p>0x001F</p>
-
-                            </div>
-                            <div class="tables">
-
-                                <table>
-                                    <tr class="values">
-                                        <th>x</th>
-                                        <th>B</th>
-                                        <th>B</th>
-                                        <th>B</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-
-                                <table>
-                                    <tr class="values">
-                                        <th>B</th>
-                                        <th>B</th>
-                                        <th>G</th>
-                                        <th>G</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                </table>
-
-                                <table>
-                                    <tr class="values">
-                                        <th>G</th>
-                                        <th>G</th>
-                                        <th>G</th>
-                                        <th>R</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>1</td>
-                                    </tr>
-                                </table>
-
-                                <table>
-                                    <tr class="values">
-                                        <th>R</th>
-                                        <th>R</th>
-                                        <th>R</th>
-                                        <th>R</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!--content_row-->
-            </div><!--content_group-->
-
-
-            <div class="content_group">
-                <h1>Compile and Run</h1>
-                <div class="content_row">
-                    <div class="text">
-                        <p>
-                            Now that all of that is explained, all we have left to do is compile and run our little program.  Please make sure you have your project set up and structured
-                            as explained in the Project Setup section and that you're Makefile is in place.  Once you've done that go ahead and press "Alt+1" in order to compile your project.
-                            Now open up your Gameboy Advance emulator and navigate to your project folder and open up the file with the .gba extension.  What you should see is the image on the
-                            right.  You may not be able to see it, especially if you're color blind, but I would suggest making the window bigger.  You can set it to x4 the window size in the
-                            Options -> Video menu.
-                        </p>
-                        <p>
-                            If you don't see the red pixel then try going through everything again fresh and see if there was anything you missed.  Remember, you can always shoot me an email
-                            from the Contacts page if you have any issues, questions, or to tell me how awesome I am.
-                        </p>
-                    </div>
-
-
-                    <div class="intro_image">
-
-                        <img src="../images/pixel_red.png" alt="test image">
-
-                    </div>
-                </div>
-            </div>
+            
 
 
             <div class="conclusion">
                 <h1>Conclusion</h1>
                 <p>
-                    Good job on completing this project!  I wish I had a prize for you, but I think that the satisfaction of completing something is prize enough, right?
-                    Anyways, if you completed this you may be wondering how we can draw the pixel anywhere on the screen.  Check out the next tutorial because that is exactly
-                    what we'll cover in that tutorial.  We can even draw more than one pixel too!  Then later we'll make the pixel move around the screen.
-                    So don't stop here, continue onwards in your GBA journey!
+                    You can implement the code here into your project whenever you need to control something
+                    with key presses, which will be always.  I don't know how else you would control your game
+                    without using the keys, so this is a very important section.  I guess there are some games that
+                    have accelerometers built in and you can control a game that way, but those have to be on the
+                    game cartridge and are definitely not standard.
 
 
                 </p>
