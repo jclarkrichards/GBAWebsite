@@ -187,7 +187,7 @@
             </div><!--content_group-->
 
 
-           
+
 
 
             <div class="content_group">
@@ -250,8 +250,639 @@ int main()
 
 
 
+            <div class="content_group">
+                <h1 class="codeheader">Visual Explanation of Basic Implementation</h1>
+                <div class="content_row">
+                    <div class="table_text">
+                        <p>
+                            Take a look at these bits.  The first one is the default state of the key register (0x0400:0130).  The second line is just the first line with all of the bits
+                            inverted so that the default state has the keys zeroed out when they are not being pressed.  The last one respresents the UP Key.  Notice that there is only 1 bit
+                            set which is in the UP key position.  Take a look at the chart at the top for the bit positions of all of the keys.
+                        </p>
+                        <p>
+                            Remember the code above where we checked for the UP key being pressed with (~REG_KEYS &amp; UP)?  If you look at the middle 2 lines at the right you'll see that if
+                            the UP key is not being pressed then this expression results in a 0 value.
+                        </p>
+                        <p>
+                            The last line shows the inverted register when the UP key is being pressed.  If you look at the last 2 lines you should see that now this expression will result in
+                            something other than 0.  Also notice that it doesn't matter if other keys are being pressed since we are only interested in the UP key all of the other keys
+                            will get zeroed out anyways.
+                        </p>
+                    </div>
 
-            
+                    <div class="table_info">
+                        <div class="table_group">
+
+                            <div>
+                                <p>REG_KEY: 0x03FF</p>
+                                <div class="table_row">
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>~REG_KEY: 0xFC00</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>UP KEY: 0x0040</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>~REG_KEY: 0xFC40 (UP Key pressed)</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--content_row-->
+            </div><!--content_group-->
+
+
+
+            <div class="content_group">
+                <h1>Advanced Implementation</h1>
+                <div class="content_row">
+                    <div class="codetext">
+                        <p>
+                            Remember that we're also interested in knowing when a key is pressed but not necessarily held down.  That means that we're not just interested in the state of
+                            the keys, but their transition states as well.  For example, if we only wanted our character to move 1 pixel with each key press instead of continuously.  In order
+                            to have that kind of key press we need to keep track of not only the current state of the keys, but also their previous state.
+                        </p>
+                        <p>
+                            I added 2 new variables called curr and prev for current and previous states respectively.  In the while loop I have 2 different key presses defined:  a continuous 
+                            press and a one-time key press.  As you can see I need all three variables to determine the state of the key press.  
+                        </p>
+                    </div>
+
+
+                    <div class="code">
+                        <h3>main.cpp</h3>
+                        <pre>
+                        <code class="language-cpp">
+#define REG_KEYS    *(volatile unsigned short*)0x04000130
+#define UP          0x0040
+
+int main()
+{
+    *(volatile unsigned short*)0x04000000 = 0x0403;
+
+    volatile unsigned short curr = ~REG_KEYS;
+    volatile unsigned short prev = ~REG_KEYS;
+ 
+    while(1)
+    {
+        if((curr &amp; prev) &amp; UP)
+        {
+            //The UP key is currently being pressed.
+        }
+
+        if((curr &amp; ~prev) &amp; UP)
+        {
+            //The UP key was just pressed 
+        }
+
+        prev = curr;
+        curr = ~REG_KEYS;
+    }
+    return 0;
+}                  
+                            </code>
+                      
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="content_group">
+                <h1 class="codeheader">Visual Explanation of Advanced Implementation</h1>
+                <div class="content_row">
+                    <div class="table_text">
+                        <p>
+                            
+                        </p>
+                    </div>
+
+                    <div class="table_info">
+                        <div class="table_group">
+
+                            <div>
+                                <p>UP key initially pressed</p>
+                                <p>Current State</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+
+                                <p>Previous State</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>~Previous State</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>UP KEY</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <hr style="margin: 20px 0;"/>
+                                <p>UP Key still being pressed</p>
+
+                                <p>Current State</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+
+                                <p>Previous State</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>~Previous State</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                                <p>UP KEY</p>
+                                <div class="table_row">
+                                    <table>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                    <table>
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--content_row-->
+            </div><!--content_group-->
+
 
 
 

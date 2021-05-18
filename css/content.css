@@ -155,8 +155,10 @@ pre > code {
     border: 1px solid black;
 }
 
-.table_group {
 
+
+.table_group {
+  
 }
 
 .table_group .table_header {
@@ -207,6 +209,31 @@ pre > code {
 .table_group .tables table tr th {
     background: #c4c1c1;
 }
+
+
+.table_row {
+    display: flex;
+    
+    padding-bottom: 20px;
+}
+
+
+        .table_row table {
+            flex: 25%;
+            margin: 0 10px;
+            box-shadow: 4px 4px #111;
+            border-collapse: collapse;
+        }
+
+            .table_row table tr td, th {
+                text-align: center;
+                border: 1px solid black;
+                background: white;
+            }
+
+            .table_row table tr th {
+                background: #c4c1c1;
+            }
 
 
        
