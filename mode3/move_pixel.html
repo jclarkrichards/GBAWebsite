@@ -160,15 +160,23 @@ u16 color15(u16 r, u16 g, u16 b)
 
 
             <div class="content_group">
-                <h1>main.cpp</h1>
+                <h1>main.cpp modified</h1>
                 <div class="content_row">
                     <div class="codetext">
                         <p>
-                            We are going to start with the code we wrote for the <a href="single_pixel2.html" class="inline_btn">second project</a>.
+                            So the first thing we need to do is add the key register which is at memory address 0x0400:0130.  Remember to set it as a volatile 2 byte.  Next we're going to 
+                            define the keys RIGHT, LEFT, UP, and DOWN.  Simply the directions we want the pixel to move in.  Inside of the main function we'll define the current state and previous
+                            state with curr and prev respectively.  They both have to be the same size as the register which is a volatile unsigned short.  We then initially set them to be
+                            the inverse of the register.  The reason we do that can be found on the page where we talk about the keys.  The link is above.  
                         </p>
                         <p>
-                            As always, copy this code and then compile and run it.  Once this is working without errors continue.  You can make the pixel any color and
-                            have it start from anywhere on the screen.
+                            Now we're actually going to put something in the while loop instead of having it empty all the time.  We're simply going to check if any of the four keys we
+                            defined are being held down.  If so, then we move the pixel in that direction.  We move the pixel by incrementing or decrementing its x and y values then 
+                            drawing that pixel in the new location.
+                        </p>
+
+                        <p>
+                            Finally, we update the curr and prev variables so that we pass the current state to the prev variable and then get a new current state for the curr variable. 
                         </p>
 
 
@@ -183,7 +191,14 @@ u16 color15(u16 r, u16 g, u16 b)
 #define vu16        volatile u16
 
 #define REG_DISP    *(vu16*)0x04000000
+#define REG_KEYS    *(vu16*)0x04000130
+
 #define VRAM        (vu16*)0x06000000
+
+#define RIGHT       0x0010
+#define LEFT        0x0020
+#define UP          0x0040
+#define DOWN        0x0080
 
 const int WIDTH = 240;
 const int HEIGHT = 160;
@@ -197,8 +212,36 @@ int main()
 {
     REG_DISP = 0x0403;
     vu16 *vram = VRAM;
-    vram[x + WIDTH * y] = color15(31, 0, 0);
-    while(1);
+    //vram[x + WIDTH * y] = color15(31, 0, 0);
+    vu16 curr = ~REG_KEYS;
+    vu16 prev = ~REG_KEYS;
+    while(1)
+    {
+        if((curr &amp; prev) &amp; RIGHT)
+        {
+            x++;
+            vram[x + WIDTH * y] = color15(31, 0, 0);
+        }
+        else if((curr &amp; prev) &amp; LEFT)
+        {
+            x--;
+            vram[x + WIDTH * y] = color15(31, 0, 0);
+        }
+
+        if((curr &amp; prev) &amp; DOWN)
+        {
+            y++;
+            vram[x + WIDTH * y] = color15(31, 0, 0);
+        }
+        else if((curr &amp; prev) &amp; UP)
+        {
+            y--;
+            vram[x + WIDTH * y] = color15(31, 0, 0);
+        }
+
+        prev = curr;
+        curr = ~REG_KEYS;
+    }
     return 0;
 }     
                             
@@ -213,6 +256,38 @@ u16 color15(u16 r, u16 g, u16 b)
                 </div>
             </div>
 
+
+            <div class="content_group">
+                <h1>Timing</h1>
+                <div class="content_row">
+                    <div class="text">
+                        <p>
+                            Go ahead and run the program now and press the directional keys on your keyboard.  What happens?  The pixel definitely moves, but not how you would expect.  
+                            Pressing right for just a moment colors half the screen the same color as the pixel for instance.  That's not really what we wanted to do.  
+                        </p>
+                        <p>
+                            The reason this does this is because the pixel is just moving way too fast.  The code is being called too often.  We need to slow the pixel down somehow.  The issue 
+                            actually brings up another seemingly unrelated issue.  When is it a good time to update the pixel's position?  If your response was "as soon as possible my good man!", 
+                            then you are wrong!  Think about it for a second.  Remember in the <a href="../common/basics.html" class="inline_btn">Basics</a> section where we talked about
+                            the scanlines and the vertical and horizontal blanks?  If not, then go ahead and review that section.  Then once you're done with that read the section linked here
+                            which talks about vsyncing which is what we need in order to fix our problem.
+                        </p>
+                    </div>
+
+
+                    <div class="info">
+                        <h3>TIP</h3>
+
+                        <br />
+                        <p>
+                            Learn all about vsync
+                        </p>
+                        <br /><br />
+                        <a href="../concepts/vsync.html">Go</a>
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
 
             
 
