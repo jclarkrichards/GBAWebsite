@@ -45,7 +45,7 @@
                     </p>
                 </div>
                 <div class="intro_image">
-                    <img src="../images/pixel_green.png" alt="test image">
+                    <img src="../images/moving_pixel_trail.png" alt="test image">
                 </div>
             </div>
 
@@ -391,12 +391,12 @@ u16 color15(u16 r, u16 g, u16 b)
                         <p>
                             The reason it leaves a trail is because when we move the pixel around we're adding the color information of the pixel into VRAM.  As long as that color information remains
                             in VRAM then the pixel that corresponds to that VRAM address is going to display that color.  So if you don't want to leave a trail, then anytime you move you would also 
-                            have to clear the VRAM address you were just at.  You can do that very easily by just setting your the color to (0, 0, 0), which is black, in VRAM before incrementing or
-                            decrementing the x and y variables.  I won't display that here, but try it out for extra credit.
+                            have to clear the VRAM address you were just at.  You can do that very easily by just setting the color to (0, 0, 0), which is black, in VRAM before incrementing or
+                            decrementing the x and y variables.  I won't display that here, but we'll do it in the Etch-A-Sketch project.
                         </p>
                     </div>
                     <div class="intro_image">
-                        <img src="../images/pixel_green.png" alt="test image">
+                        <img src="../images/moving_pixel_trail.png" alt="test image">
                     </div>
                 </div>
 
